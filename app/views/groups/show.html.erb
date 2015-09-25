@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+
+<p>
+  <strong>Photo limit:</strong>
+  <%= @group.photo_limit %>
+</p>
+
+<p>
+  <strong>Recipient name:</strong>
+  <%= @group.recipient_name %>
+</p>
+
+<p>
+  <strong>Recipient street:</strong>
+  <%= @group.recipient_street %>
+</p>
+
+<p>
+  <strong>Recipient postal code:</strong>
+  <%= @group.recipient_postal_code %>
+</p>
+
+<p>
+  <strong>Recipient city:</strong>
+  <%= @group.recipient_city %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
