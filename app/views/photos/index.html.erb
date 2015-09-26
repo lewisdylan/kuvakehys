@@ -5,6 +5,10 @@
 <table>
   <thead>
     <tr>
+      <th>Picture</th>
+      <th>Group</th>
+      <th>Sender e-mail</th>
+      <th>Sender name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +16,10 @@
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
+        <th><%= link_to(image_tag(photo.picture.url(:small)), photo) %></td>
+        <td><%= link_to(photo.group.name, group_url(photo.group)) if photo.group %></td>
+        <td><%= photo.sender_email %></td>
+        <td><%= photo.sender_name %></td>
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -21,5 +29,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Photo', new_photo_path %>

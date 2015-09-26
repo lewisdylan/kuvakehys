@@ -42,9 +42,12 @@ ActiveRecord::Schema.define(version: 20150925083213) do
     t.integer  "picture_file_size"
     t.integer  "width"
     t.integer  "height"
+    t.string   "sender_email"
+    t.string   "sender_name"
     t.text     "message"
     t.text     "subject"
     t.text     "body"
+    t.string   "message_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

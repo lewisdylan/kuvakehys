@@ -15,6 +15,8 @@ gem 'haikunator'
 group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

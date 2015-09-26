@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_filter :require_admin, except: [:new, :create]
+
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   # GET /groups
@@ -69,6 +71,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :photo_limit, :recipient_name, :recipient_street, :recipient_postal_code, :recipient_city)
+      params.require(:group).permit(:name, :email, :photo_limit, :recipient_name, :recipient_street, :recipient_postal_code, :recipient_city)
     end
 end
