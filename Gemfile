@@ -17,6 +17,7 @@ group :test, :development do
   gem "factory_girl_rails"
   gem 'pry'
   gem 'pry-rails'
+  gem 'dotenv-rails'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
