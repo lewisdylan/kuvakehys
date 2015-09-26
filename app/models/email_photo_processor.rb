@@ -18,6 +18,7 @@ class EmailPhotoProcessor
         sender_name: @email.from[:name]
       })
     end
+    UserMailer.email_processed(@email, group).deliver_now
   end
 
   def verify(api_key, token, timestamp, signature)

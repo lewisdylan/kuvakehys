@@ -3,6 +3,6 @@ class Order < ActiveRecord::Base
   has_many :photos
 
   def complete!
-    # TODO order the picutes
+    AdminMailer.new_order(self).deliver_now
   end
 end
