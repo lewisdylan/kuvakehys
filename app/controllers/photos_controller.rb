@@ -8,4 +8,10 @@ class PhotosController < ApplicationController
   def show
     @photo = Photo.find(params[:id])
   end
+
+  def destroy
+    @photo = Photo.find(params[:id])
+    @photo.detroy
+    redirect_to photos_url
+  end
 end
