@@ -9,7 +9,10 @@ class Photo < ActiveRecord::Base
   after_create :create_order_if_full
   after_create :notify_sender
 
-  has_attached_file :picture, styles: { small: '200', big: '600' }
+  has_attached_file :picture, styles: { small: '200', big: '600' },
+      :path => ":class/:attachment/:id/:style/:hash.:extension",
+      :hash_secret => ENV['PAPERCLIP_URL_SECRET']
+
   validates_attachment :picture, presence: true,
       content_type: { content_type: "image/jpeg" }
 
