@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :groups
 
   mount_griddler
-  root 'groups#new'
+  root 'pages#home'
 end
