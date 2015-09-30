@@ -2,9 +2,10 @@ FactoryGirl.define do
   factory :email, class: OpenStruct do
     # Assumes Griddler.configure.to is :hash (default)
     to [{ raw: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com' }]
-    from 'user@email.com'
+    from Hash[{ raw: 'from_user@email.com', email: 'from_user@email.com', token: 'from_user', host: 'email.com' }]
     subject 'email subject'
     body 'Hello!'
+    headers do {'Message-ID' => SecureRandom.hex(5) } end
     attachments {[]}
 
     trait :with_attachment do

@@ -6,8 +6,7 @@ class EmailPhotoProcessor
   end
 
   def process
-    from_tokens = @email.to.collect { |e| e[:token] }
-    group = Group.where(email: from_tokens).first!
+    group = find_or_setup_new_group_for(@email)
     @email.attachments.each do |a|
       group.photos.create!({
         picture: a,
@@ -19,6 +18,11 @@ class EmailPhotoProcessor
       })
     end
     UserMailer.email_processed(@email, group).deliver_now
+  end
+
+  def find_or_setup_new_group_for(email)
+    to_tokens = @email.to.collect { |e| e[:token] }
+    Group.where(email: to_tokens).first || Group.create(owner_name: email.from[:name], owner_email: email.from[:email], email: to_tokens.first, name: to_tokens.first)
   end
 
   def verify(api_key, token, timestamp, signature)
