@@ -10,34 +10,15 @@
       </ul>
     </div>
   <% end %>
+  <div>
+   Alle Fotos, die an:
+    <%= f.text_field :email %>@kuvakehys.de 
+    geschickt werden, sollen sobald
+    <%= f.text_field :photo_limit %> Fotos gesammelt wurden, 
+    entwickelt und per Post an
+    <%= f.text_area :address %>
+    versendet werden. 
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :photo_limit %><br>
-    <%= f.number_field :photo_limit %>
-  </div>
-  <div class="field">
-    <%= f.label :recipient_name %><br>
-    <%= f.text_field :recipient_name %>
-  </div>
-  <div class="field">
-    <%= f.label :recipient_street %><br>
-    <%= f.text_field :recipient_street %>
-  </div>
-  <div class="field">
-    <%= f.label :recipient_postal_code %><br>
-    <%= f.text_field :recipient_postal_code %>
-  </div>
-  <div class="field">
-    <%= f.label :recipient_city %><br>
-    <%= f.text_field :recipient_city %>
   </div>
   <div class="actions">
     <%= f.submit %>

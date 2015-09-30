@@ -1,30 +1,23 @@
 class GroupsController < ApplicationController
-  before_filter :require_admin, except: [:new, :create]
+  before_filter :require_admin, only: [:index, :detroy]
 
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
-  # GET /groups
-  # GET /groups.json
   def index
     @groups = Group.all
   end
 
-  # GET /groups/1
-  # GET /groups/1.json
   def show
+    redirect_to edit_group_url(@group)
   end
 
-  # GET /groups/new
   def new
-    @group = Group.new
+    @group = Group.new(email: Haikunator.haikunate, photo_limit: 25)
   end
 
-  # GET /groups/1/edit
   def edit
   end
 
-  # POST /groups
-  # POST /groups.json
   def create
     @group = Group.new(group_params)
 
@@ -39,8 +32,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /groups/1
-  # PATCH/PUT /groups/1.json
   def update
     respond_to do |format|
       if @group.update(group_params)
@@ -53,8 +44,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
   def destroy
     @group.destroy
     respond_to do |format|
@@ -64,13 +53,11 @@ class GroupsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_group
-      @group = Group.find(params[:id])
+      @group = Group.where(email: params[:id]).first!
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :email, :photo_limit, :recipient_name, :recipient_street, :recipient_postal_code, :recipient_city)
+      params.require(:group).permit(:name, :email, :photo_limit, :recipient_name, :recipient_street, :recipient_postal_code, :recipient_city, :address)
     end
 end
