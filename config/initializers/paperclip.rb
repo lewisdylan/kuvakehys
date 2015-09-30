@@ -9,8 +9,4 @@ if Rails.env.production?
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   })
-else
-  Paperclip::Attachment.default_options.merge!({
-    :storage => :file
-  })
 end
