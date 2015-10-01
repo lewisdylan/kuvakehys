@@ -9,6 +9,7 @@ gem "puma"
 gem 'rails_12factor', group: :production
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
+gem 'pwinty', git: 'https://github.com/bumi/pwinty.git'
 
 gem 'haikunator'
 
