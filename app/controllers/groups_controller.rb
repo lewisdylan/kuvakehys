@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.new(email: Haikunator.haikunate, photo_limit: 25)
+    @group = Group.new(email: Haikunator.haikunate, recipient_country: 'DE')
   end
 
   def edit
@@ -58,6 +58,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name, :email, :photo_limit, :recipient_name, :recipient_address_1, :recipient_address_2, :recipient_postal_code, :recipient_city )
+      params.require(:group).permit(:name, :email, :photo_limit, :recipient_name, :recipient_address_1, :recipient_address_2, :recipient_postal_code, :recipient_city, :recipient_country)
     end
 end

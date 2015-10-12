@@ -18,7 +18,4 @@ class Group < ActiveRecord::Base
     self.photo_limit ||= 25
   end
 
-  def recipient_country
-    'DE'
-  end
 end
