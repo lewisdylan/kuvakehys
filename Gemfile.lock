@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/bumi/pwinty.git
+  revision: ac76d3ae558ef293e45ace8302ae380d12ce9500
+  specs:
+    pwinty (1.0.1)
+      rest-client (~> 1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,6 +70,8 @@ GEM
     coffee-script-source (1.9.1.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
+    domain_name (0.5.25)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
@@ -82,6 +91,8 @@ GEM
       griddler
     haikunator (1.1.0)
     htmlentities (4.3.4)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
@@ -105,6 +116,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.8.1)
     multi_json (1.11.2)
+    netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     paperclip (4.3.1)
@@ -159,6 +171,10 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -202,6 +218,9 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -228,6 +247,7 @@ DEPENDENCIES
   pry
   pry-rails
   puma
+  pwinty!
   quiet_assets
   rails (= 4.2.4)
   rails_12factor
