@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
   end
 
   def insert_defaults
-    self.email ||= "#{self.name}-#{SecureRandom.hex(2)}"
+    self.email ||= Haikunator.haikunate
     self.photo_limit ||= 25
   end
 

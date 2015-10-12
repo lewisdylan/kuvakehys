@@ -17,7 +17,7 @@
     <% @photos.each do |photo| %>
       <tr>
         <th><%= link_to(image_tag(photo.picture.url(:small)), photo) %></td>
-        <td><%= link_to(photo.group.name, group_url(photo.group)) if photo.group %></td>
+        <td><%= link_to(photo.group.email, group_url(photo.group)) if photo.group %></td>
         <td><%= photo.sender_email %></td>
         <td><%= photo.sender_name %></td>
         <td><%= link_to 'Show', photo %></td>
