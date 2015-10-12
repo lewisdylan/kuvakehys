@@ -7,6 +7,7 @@ class Photo < ActiveRecord::Base
   scope :ordered, -> { where('order_id IS NOT NULL') }
 
   validates_uniqueness_of :picture_fingerprint, scope: [:group_id, :message_id], allow_blank: true
+  before_save :analyze_picture
   after_create :create_order_if_full
 
   if Rails.env.production?
@@ -31,13 +32,23 @@ class Photo < ActiveRecord::Base
   end
 
   def print_type
-    '10x15_cm' # should be '9x13_cm' for smaller pictures
+    (self.width.to_i > 600 && self.height.to_i > 900) ? '10x15_cm' : '9x13_cm'
   end
 
   def create_order_if_full
-    return if self.group.photos.open.count < self.group.photo_limit
+    return if self.group.blank? || self.group.photos.open.count < self.group.photo_limit
     order = self.group.orders.create()
     self.group.photos.open.update_all(order_id: order.id)
     order.complete!
+  end
+
+  def analyze_picture
+    return if picture.blank?
+    tempfile = picture.queued_for_write[:original]
+    unless tempfile.nil?
+      geometry = Paperclip::Geometry.from_file(tempfile)
+      self.width = geometry.width.to_i
+      self.height = geometry.height.to_i
+    end
   end
 end

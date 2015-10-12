@@ -21,6 +21,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'dotenv-rails'
   gem 'quiet_assets'
+  gem 'webmock'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
