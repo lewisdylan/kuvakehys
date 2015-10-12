@@ -5,10 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Email</th>
       <th>Photo limit</th>
       <th>Recipient name</th>
-      <th>Recipient street</th>
+      <th>Recipient address 1</th>
+      <th>Recipient address 2</th>
       <th>Recipient postal code</th>
       <th>Recipient city</th>
       <th colspan="3"></th>
@@ -18,10 +19,11 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.name %></td>
+        <td><%= group.email %></td>
         <td><%= group.photo_limit %></td>
         <td><%= group.recipient_name %></td>
-        <td><%= group.recipient_street %></td>
+        <td><%= group.recipient_address_1 %></td>
+        <td><%= group.recipient_address_2 %></td>
         <td><%= group.recipient_postal_code %></td>
         <td><%= group.recipient_city %></td>
         <td><%= link_to 'Show', group %></td>

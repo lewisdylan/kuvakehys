@@ -15,7 +15,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to order.group.name, order.group if order.group %></td>
+        <td><%= link_to order.group.email, order.group if order.group %></td>
         <td><%= link_to order.print_order_id, "https://dashboard.pwinty.com/Order/Detail/#{order.print_order_id}" if order.print_order_id? %></td>
         <td><%= l order.created_at, format: :short %></td>
         <td><%= link_to 'Show', order %></td>
