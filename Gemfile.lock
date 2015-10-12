@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/bumi/pwinty.git
-  revision: ac76d3ae558ef293e45ace8302ae380d12ce9500
+  revision: b6e5e18758e96f28909fe687b9d47f41335535be
   specs:
     pwinty (1.0.1)
       rest-client (~> 1.8)
