@@ -12,7 +12,8 @@ class Order < ActiveRecord::Base
   def create_order
     order = PWINTY.create_order(
       recipientName: self.group.recipient_name,
-      address1: self.group.recipient_street,
+      address1: self.group.recipient_address_1,
+      address2: self.group.recipient_address_2,
       addressTownOrCity: self.group.recipient_city,
       postalOrZipCode: self.group.recipient_postal_code,
       stateOrCounty: '',
