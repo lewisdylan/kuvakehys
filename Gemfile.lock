@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/bumi/pwinty.git
-  revision: 0846e9a2e10036ddbe62c21229a5e070b98e0c2a
+  revision: ac76d3ae558ef293e45ace8302ae380d12ce9500
   specs:
     pwinty (1.0.1)
       rest-client (~> 1.8)
@@ -70,7 +70,7 @@ GEM
     coffee-script-source (1.9.1.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
-    domain_name (0.5.24)
+    domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
