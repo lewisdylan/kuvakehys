@@ -18,9 +18,9 @@ class WhatsappController < ApplicationController
     elsif @message.type.image?
 			if !user.group.nil?
 				user.group.photos.create(user: user, picture: @message.image)
-				message = "Picture successfully added to group #{user.group.email}"
+				message = "Thanks #{@message.name}, your picture was successfully added to group #{user.group.email}. #{user.group.photos_missing_for_next_order} photos are missing for the next package."
 			else
-				message = "Sorry, we could not identify your group. Please specify which group you want to add the picture to."
+				message = "Hi #{@message.name}! Sorry, we could not identify your group. Please specify which group you want to add the picture to."
 			end
 		end
     Rails.logger.info(message)
