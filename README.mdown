@@ -1,0 +1,32 @@
+# Welcome to Kuvakehys
+
+
+## Setup
+
+### Dependencies:
+
+* Postgres >= 9.1
+* Ruby >= 1.9.3 (2.1 preferred)
+* all ruby dependencies are described in the Gemfile (please refere to the changelog of this file to check for updates)
+
+### Installation
+
+1) Install the bundle
+
+    bundle install
+
+2) Setup your database
+
+    cp config/database.yml.example config/database.yml
+    vim config/database.yml # edit your database configuration
+    rake db:setup # create, migrate and seed the database
+
+3) Setup application config using [dotenv](https://github.com/bkeepers/dotenv)
+    
+    cp env.example .env
+    vim .env # edit the needed variables
+
+4) Run the server / done
+
+    rails server
+    open [http://localhost:3000](http://localhost:3000)
