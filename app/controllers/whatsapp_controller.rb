@@ -23,6 +23,7 @@ class WhatsappController < ApplicationController
 				message = "Sorry, we could not identify your group. Please specify which group you want to add the picture to."
 			end
 		end
+    Rails.logger.info(message)
     Ongair::Message.new(phone_number: user.phone, text: message).deliver!
 		render text: 'ok'
 	end
