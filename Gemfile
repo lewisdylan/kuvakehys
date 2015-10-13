@@ -12,6 +12,7 @@ gem 'aws-sdk', '~> 1.6'
 gem 'pwinty', git: 'https://github.com/bumi/pwinty.git'
 gem 'country_select'
 
+gem 'rest-client'
 gem 'haikunator'
 
 group :test, :development do
