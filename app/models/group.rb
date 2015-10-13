@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
 
   has_many :photos, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :users
 
   def photos_missing_for_next_order
     self.photo_limit - self.photos.open.count
