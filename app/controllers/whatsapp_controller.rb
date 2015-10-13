@@ -2,6 +2,8 @@ class WhatsappController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 	def receive
+    render text: 'we do not care, but thanks' and return unless ['MessageReceived', 'ImageReceived'].include?(params['notification_type'])
+
 		user = User.find_or_create_by(phone: params['phone_number'])
 
 		if params.has_key?(:text)
@@ -18,7 +20,7 @@ class WhatsappController < ApplicationController
 
 			if !user.group.nil?
 				user.group.photos.create(user: user, picture: params['image'])
-				message = "Picture successfully added to group #{user.group.email}" 
+				message = "Picture successfully added to group #{user.group.email}"
 			else
 				message = "Please specify which group to send to"
 			end
@@ -28,5 +30,8 @@ class WhatsappController < ApplicationController
 	end
 
 	def send_message(phone, message)
+    RestClient.post 'https://app.ongair.im/api/v1/base/send',
+      {:phone_number => phone, :text => message},
+      {'Accept' => 'application/json', 'Authorization' => "Token token=#{ENV['ONGAIR_TOKEN']}"}
 	end
 end
