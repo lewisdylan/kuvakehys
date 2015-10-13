@@ -13,16 +13,18 @@ class WhatsappController < ApplicationController
 			else
 				message = "Sorry group #{params[:text]} does not exist."
 			end
-		end
 
-		if !user.group.nil?
-			user.group.photos.create(user: user, picture: params['image'])
-			message = "Picture successfully added to group #{user.group.email}" 
 		else
-			message = "Please specify which group to send to"
-		end
 
+			if !user.group.nil?
+				user.group.photos.create(user: user, picture: params['image'])
+				message = "Picture successfully added to group #{user.group.email}" 
+			else
+				message = "Please specify which group to send to"
+			end
+		end
 		send_message(user.phone, message)
+		render text: 'ok'
 	end
 
 	def send_message(phone, message)
