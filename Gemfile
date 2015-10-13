@@ -22,6 +22,8 @@ group :test, :development do
   gem 'dotenv-rails'
   gem 'quiet_assets'
   gem 'webmock'
+  gem 'therubyracer'
+  gem 'sqlite3'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
