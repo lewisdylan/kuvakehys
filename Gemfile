@@ -14,7 +14,6 @@ gem 'country_select'
 
 gem 'ongair', git: 'https://github.com/bumi/ongair.git'
 
-gem 'rest-client'
 gem 'haikunator'
 
 group :test, :development do
@@ -24,6 +23,10 @@ group :test, :development do
   gem 'pry-rails'
   gem 'dotenv-rails'
   gem 'quiet_assets'
+  gem 'spring'
+  gem 'web-console', '~> 2.0'
+  # gem 'therubyracer' - if you have problems withs node.js / asset compilation
+  # gem 'sqlite3' - if you want to use sqlite3 for development
 end
 group :test do
   gem 'webmock'
@@ -47,26 +50,4 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-end
-
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-end
 
