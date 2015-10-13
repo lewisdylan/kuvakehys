@@ -12,6 +12,8 @@ gem 'aws-sdk', '~> 1.6'
 gem 'pwinty', git: 'https://github.com/bumi/pwinty.git'
 gem 'country_select'
 
+gem 'ongair', git: 'https://github.com/bumi/ongair.git'
+
 gem 'rest-client'
 gem 'haikunator'
 
@@ -22,9 +24,9 @@ group :test, :development do
   gem 'pry-rails'
   gem 'dotenv-rails'
   gem 'quiet_assets'
+end
+group :test do
   gem 'webmock'
-  gem 'therubyracer'
-  gem 'sqlite3'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

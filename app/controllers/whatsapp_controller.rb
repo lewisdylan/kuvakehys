@@ -1,37 +1,41 @@
 class WhatsappController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
+  before_filter :set_ongair_message
+  before_filter :validate_message_type
+
 	def receive
-    render text: 'we do not care, but thanks' and return unless ['MessageReceived', 'ImageReceived'].include?(params['notification_type'])
+		user = User.find_or_create_by(phone: @message.phone_number)
 
-		user = User.find_or_create_by(phone: params['phone_number'])
-
-		if params.has_key?(:text)
-			group = Group.find_by(email: params[:text])
-			if !group.nil?
+		if @message.type.message?
+			if group = Group.find_by(email: @message.text)
 				user.group = group
 				user.save!
 				message = "You have been added to the group #{group.email}. You can now send your pictures to be added there."
 			else
-				message = "Sorry group #{params[:text]} does not exist."
+				message = "Sorry group #{@message.text} does not exist. Go to http://tasveer.de if you want to create one."
 			end
-
-		else
-
+    elsif @message.type.image?
 			if !user.group.nil?
-				user.group.photos.create(user: user, picture: params['image'])
+				user.group.photos.create(user: user, picture: @message.image)
 				message = "Picture successfully added to group #{user.group.email}"
 			else
-				message = "Please specify which group to send to"
+				message = "Sorry, we could not identify your group. Please specify which group you want to add the picture to."
 			end
 		end
-		send_message(user.phone, message)
+    Ongair::Message.new(phone_number: user.phone, text: message).deliver!
 		render text: 'ok'
 	end
 
-	def send_message(phone, message)
-    RestClient.post 'https://app.ongair.im/api/v1/base/send',
-      {:phone_number => phone, :text => message},
-      {'Accept' => 'application/json', 'Authorization' => "Token token=#{ENV['ONGAIR_TOKEN']}"}
-	end
+
+  private
+    def validate_message_type
+      if !@message.type.message? && !@message.type.image?
+        render text: 'we do not care, but thanks'
+      end
+    end
+
+    def set_ongair_message
+      @message = Ongair::Message.new(params)
+    end
 end
