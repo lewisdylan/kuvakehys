@@ -8,6 +8,7 @@
 * Postgres >= 9.1
 * Ruby >= 1.9.3 (2.1 preferred)
 * all ruby dependencies are described in the Gemfile (please refere to the changelog of this file to check for updates)
+* node.js or a similar JavaScript runtime for asset compilation - if you do not have node.js or a similar JS runtime, add `gem 'therubyracer', platforms: :ruby` to the Gemfile
 
 ### Installation
 
