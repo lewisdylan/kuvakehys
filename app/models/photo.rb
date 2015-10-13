@@ -2,6 +2,7 @@ class Photo < ActiveRecord::Base
 
   belongs_to :group
   belongs_to :order
+  belongs_to :user
 
   scope :open, -> { where('order_id IS NULL') }
   scope :ordered, -> { where('order_id IS NOT NULL') }
