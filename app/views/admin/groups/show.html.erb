@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Photos missing</strong>
+  <%= @group.photos_missing_for_next_order %>
+</p>
+
+<p>
   <strong>Created at</strong>
   <%= l @group.created_at, format: :short %>
 </p>
@@ -37,7 +42,7 @@
 </table>
 
 
-<h1>Listing Photos</h1>
+<h1>Next Photos</h1>
 
 <table>
   <thead>
