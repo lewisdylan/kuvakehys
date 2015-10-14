@@ -6,6 +6,7 @@ class WhatsappController < ApplicationController
 
   def receive
     user = User.find_or_create_by(phone: @message.phone_number)
+    user.update_attribute(:name, @message.name) unless user.name?
 
     if @message.type.message?
       if group = Group.find_by(email: @message.text)
@@ -20,7 +21,7 @@ class WhatsappController < ApplicationController
         user.group.photos.create(user: user,  picture: @message.image, sender_name: @message.name)
         message = "Thanks #{@message.name}, your picture was successfully added to group #{user.group.email}. #{user.group.photos_missing_for_next_order} photos are missing for the next package."
       else
-        message = "Hi #{@message.name}! Sorry, we could not identify your group. Please specify which group you want to add the picture to."
+        message = "Hi #{@message.name}! Sorry, we could not identify your group. Which group do you want to send the picture to?"
       end
     end
     Rails.logger.info(message)

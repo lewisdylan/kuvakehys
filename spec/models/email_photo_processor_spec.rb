@@ -7,6 +7,27 @@ describe EmailPhotoProcessor do
   let(:email) { FactoryGirl.build(:email, :with_attachment, to: to) }
   let(:processor) { EmailPhotoProcessor.new(email) }
 
+  describe 'users' do
+    context 'new user' do
+      it 'creates new users' do
+        expect { processor.process }.to change {User.count}
+        expect(group.photos.last.user.email).to eql(email.from[:email])
+        expect(group.photos.last.user.name).to eql(email.from[:name])
+        expect(group.photos.last.user).to eql(User.last)
+      end
+    end
+
+    context 'existing user' do
+      let!(:user) { FactoryGirl.create(:user, email: email.from[:email], name: email.from[:name] ) }
+
+      it 'finds the user by email' do
+        expect { processor.process }.not_to change {User.count}
+        expect(group.photos.last.user).to eql(user)
+      end
+    end
+
+  end
+
   it 'creates new photos' do
     processor.process
     expect(group.photos.count).to eql(1)

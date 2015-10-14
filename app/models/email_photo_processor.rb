@@ -7,9 +7,12 @@ class EmailPhotoProcessor
 
   def process
     to_tokens = @email.to.collect { |e| e[:token] }
+    user = User.find_or_create_by(email: @email.from[:email])
+    user.update_attribute(:name, @email.from[:name]) unless user.name?
     group = Group.where(email: to_tokens).first!
     photos = @email.attachments.collect do |a|
       group.photos.create({
+        user: user,
         picture: a,
         message_id: @email.headers["Message-ID"],
         subject: @email.subject,
