@@ -1,7 +1,7 @@
 class Admin::PhotosController < Admin::BaseController
 
   def index
-    @photos = Photo.all
+    @photos = Photo.page params[:page]
   end
 
   def show

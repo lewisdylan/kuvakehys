@@ -2,7 +2,7 @@ class Admin::GroupsController < Admin::BaseController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = Group.all
+    @groups = Group.page params[:page]
   end
 
   def show
