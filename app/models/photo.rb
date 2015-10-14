@@ -40,7 +40,6 @@ class Photo < ActiveRecord::Base
     return if self.group.blank? || self.group.photos.open.count < self.group.photo_limit
     order = self.group.orders.create()
     self.group.photos.open.update_all(order_id: order.id)
-    order.complete!
   end
 
   def analyze_picture

@@ -7,7 +7,9 @@
 <p>
   <strong>Print Order id:</strong>
   <%= link_to @order.print_order_id, "https://dashboard.pwinty.com/Order/Detail/#{@order.print_order_id}" if @order.print_order_id? %>
+  <%= button_to 'Validate and Submit', complete_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.print_order_id? %>
 </p>
+
 <p>
   <strong>Created at</strong>
   <%= l @order.created_at, format: :short %>

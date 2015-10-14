@@ -1,30 +1,22 @@
 class OrdersController < ApplicationController
   before_filter :require_admin
 
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :complete]
 
-  # GET /orders
-  # GET /orders.json
   def index
     @orders = Order.all
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
   def show
   end
 
-  # GET /orders/new
   def new
     @order = Order.new
   end
 
-  # GET /orders/1/edit
   def edit
   end
 
-  # POST /orders
-  # POST /orders.json
   def create
     @order = Order.new(order_params)
 
@@ -39,8 +31,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -53,13 +43,19 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def complete
+    if @order.complete!
+      redirect_to @order, notice: 'Order sumitted'
+    else
+      redirect_to @order, notice: 'Order can not be submitted'
     end
   end
 

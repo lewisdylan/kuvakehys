@@ -27,20 +27,17 @@ RSpec.describe Photo, type: :model do
       let(:group) { FactoryGirl.create(:group, photo_limit: 2) }
       before do
         FactoryGirl.create(:photo, group: group)
-        allow_any_instance_of(Order).to receive(:complete!).and_return(true)
       end
 
       it 'creates a new order' do
-        FactoryGirl.create(:photo, group: group)
-        expect(group.orders.count).to eql(1)
+        expect { FactoryGirl.create(:photo, group: group) }.to change { Order.count }
       end
     end
 
     context 'not full' do
       let(:group) { FactoryGirl.create(:group, photo_limit: 2) }
       it 'creates a new order' do
-        FactoryGirl.create(:photo, group: group)
-        expect(group.orders.count).to eql(0)
+        expect { FactoryGirl.create(:photo, group: group) }.not_to change { Order.count }
       end
     end
   end

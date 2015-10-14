@@ -2,8 +2,9 @@ class Order < ActiveRecord::Base
   belongs_to :group
   has_many :photos
 
+  after_create :notify_admin
+
   def complete!
-    AdminMailer.new_order(self).deliver_now
     create_order
     add_photos
     validate_and_submit_order
@@ -35,8 +36,14 @@ class Order < ActiveRecord::Base
     if order_status['isValid']
       PWINTY.update_order_status(self.print_order_id, 'Submitted')
       Rails.logger.info("order##{self.id} updated order status to Submitted")
+      true
     else
       Rails.logger.error("order##{self.id} not submitted. status=#{order_status}")
+      false
     end
+  end
+
+  def notify_admin
+    AdminMailer.new_order(self).deliver_now
   end
 end
