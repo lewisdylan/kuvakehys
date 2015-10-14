@@ -1,5 +1,8 @@
 class Group < ActiveRecord::Base
 
+  validates_presence_of :email
+  validates_uniqueness_of :email
+
   before_create :insert_defaults
 
   has_many :photos, dependent: :destroy

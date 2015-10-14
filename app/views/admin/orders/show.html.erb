@@ -2,12 +2,12 @@
 
 <p>
   <strong>Group:</strong>
-  <%= link_to @order.group.email, @order.group if @order.group %>
+  <%= link_to @order.group.email, admin_group_path(@order.group) if @order.group %>
 </p>
 <p>
   <strong>Print Order id:</strong>
   <%= link_to @order.print_order_id, "https://dashboard.pwinty.com/Order/Detail/#{@order.print_order_id}" if @order.print_order_id? %>
-  <%= button_to 'Validate and Submit', complete_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.print_order_id? %>
+  <%= button_to 'Validate and Submit', complete_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.print_order_id? %>
 </p>
 
 <p>
@@ -32,13 +32,13 @@
   <tbody>
     <% @order.photos.each do |photo| %>
       <tr>
-        <th><%= link_to(image_tag(photo.picture.url(:small)), photo) %></td>
+        <th><%= link_to(image_tag(photo.picture.url(:small)), admin_photo_path(photo)) %></td>
         <td><%= link_to(photo.group.email, group_url(photo.group)) if photo.group %></td>
         <td><%= photo.sender_email %></td>
         <td><%= photo.sender_name %></td>
-        <td><%= link_to 'Show', photo %></td>
-        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_photo_path(photo) %></td>
+        <td><%= link_to 'Edit', edit_admin_photo_path(photo) %></td>
+        <td><%= link_to 'Destroy', admin_photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } unless @order.print_order_id? %></td>
       </tr>
     <% end %>
   </tbody>
@@ -46,5 +46,5 @@
 
 
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Edit', edit_admin_order_path(@order) %> |
+<%= link_to 'Back', admin_orders_path %>

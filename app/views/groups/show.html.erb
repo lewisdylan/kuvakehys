@@ -1,0 +1,10 @@
+<h1>Your group: <%= @group.email %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<strong>You can now send photos via email to: <%= mail_to "#{@group.email}@#{ENV['SMTP_DOMAIN']}" %></strong>
+<hr />
+<div>
+  <%= render 'form' %>
+</div>
+

@@ -26,9 +26,9 @@
         <td><%= group.recipient_address_2 %></td>
         <td><%= group.recipient_postal_code %></td>
         <td><%= group.recipient_city %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_group_path(group) %></td>
+        <td><%= link_to 'Edit', edit_admin_group_path(group) %></td>
+        <td><%= link_to 'Destroy', admin_group_path(group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

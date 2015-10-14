@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= link_to @photo.group.email, admin_group_path(@photo.group) if @photo.group %>
+</p>
+<p>
+  <strong>Order:</strong>
+  <%= link_to @photo.order.id, admin_order_path(@photo.order) if @photo.order %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= link_to @photo.user.name, admin_user_path(@photo.user) if @photo.user %>
+</p>
+<p>
+  <strong>Size:</strong>
+  <%= @photo.width %>x<%= @photo.height %> 
+</p>
+<p>
+  <strong>Sender:</strong>
+  <%= @photo.sender_name %> - <%= @photo.sender_email %> 
+</p>
+<p>
+  <strong>Text:</strong>
+  <%= @photo.subject %><br />
+  <%= @photo.body %>
+</p>
+
+
+<div>
+  <%= link_to image_tag(@photo.picture.url(:big)), @photo.picture.url %>
+
+</div>
+<%= link_to 'Back', admin_photos_path %>

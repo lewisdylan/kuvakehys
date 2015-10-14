@@ -1,5 +1,4 @@
-class PhotosController < ApplicationController
-  before_filter :require_admin
+class Admin::PhotosController < Admin::BaseController
 
   def index
     @photos = Photo.all
@@ -12,6 +11,6 @@ class PhotosController < ApplicationController
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
-    redirect_to photos_url
+    redirect_to admin_photos_url
   end
 end

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kuvakehys</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<ul>
+  <li><%= link_to "Groups", admin_groups_path %></li>
+  <li><%= link_to "Photos", admin_photos_path %></li>
+  <li><%= link_to "Orders", admin_orders_path %></li>
+  <li><%= link_to "Users", admin_users_path %></li>
+</ul>
+
+<%= yield %>
+
+</body>
+</html>
+

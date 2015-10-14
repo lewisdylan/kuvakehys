@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   def require_admin
     authenticate_or_request_with_http_basic("Application") do |name, password|
       name == ENV['ADMIN_USER'] && password == ENV['ADMIN_PASSWORD']
-    end
+    end if Rails.env.production?
   end
 end

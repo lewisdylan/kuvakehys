@@ -1,4 +1,4 @@
-<%= form_for(@group) do |f| %>
+<%= form_for(@group, url: [:admin, @group]) do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
@@ -12,7 +12,7 @@
   <% end %>
   <div>
    Alle Fotos, die an:
-    <%= f.text_field :email %>@<%= ENV['SMTP_DOMAIN'] %>
+    <%= f.text_field :email %>@<%= ENV['SMTP_DOMAIN'] || 'tasveer.de' %>
     geschickt werden, sollen sobald 25
     Fotos gesammelt wurden, 
     entwickelt und per Post an
