@@ -19,7 +19,7 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.email %></td>
+        <td><%= link_to group.email, admin_group_path(group) %></td>
         <td><%= group.photo_limit %></td>
         <td><%= group.recipient_name %></td>
         <td><%= group.recipient_address_1 %></td>
