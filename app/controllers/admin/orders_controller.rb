@@ -1,6 +1,6 @@
 class Admin::OrdersController < Admin::BaseController
 
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :complete]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :prepare, :submit]
 
   def index
     @orders = Order.page params[:page]
@@ -25,8 +25,14 @@ class Admin::OrdersController < Admin::BaseController
     redirect_to admin_orders_url, notice: 'Order was successfully destroyed.'
   end
 
-  def complete
-    if @order.complete!
+  def prepare
+    @order.create_order
+    @order.add_photos
+    redirect_to admin_order_path(@order)
+  end
+
+  def submit
+    if @order.submit!
       redirect_to admin_order_path(@order), notice: 'Order sumitted'
     else
       redirect_to admin_order_path(@order), notice: 'Order can not be submitted'

@@ -9,7 +9,7 @@ else
       true
     end
     def get_order_status(id)
-      {'isValid' => (id.to_i%2 == 0)}
+      {'isValid' => (rand(5) > 0)}
     end
     def update_order_status(id, status)
       true

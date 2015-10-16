@@ -5,9 +5,14 @@
   <%= link_to @order.group.email, admin_group_path(@order.group) if @order.group %>
 </p>
 <p>
+  <strong>Status:</strong>
+  <%= @order.status %>
+</p>
+<p>
   <strong>Print Order id:</strong>
   <%= link_to @order.print_order_id, "https://dashboard.pwinty.com/Order/Detail/#{@order.print_order_id}" if @order.print_order_id? %>
-  <%= button_to 'Validate and Submit', complete_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.print_order_id? %>
+  <%= button_to 'Prepare', prepare_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.print_order_id? %>
+  <%= button_to 'Submit', submit_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.submitted? %>
 </p>
 
 <p>

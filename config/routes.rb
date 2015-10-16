@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only: [:index, :show, :edit, :update, :destroy] do
       member do
-        put :complete
+        put :submit
+        put :prepare
       end
     end
     resources :photos
