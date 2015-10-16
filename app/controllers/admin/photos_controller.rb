@@ -1,7 +1,7 @@
 class Admin::PhotosController < Admin::BaseController
 
   def index
-    @photos = Photo.page params[:page]
+    @photos = Photo.order('created_at DESC').page params[:page]
   end
 
   def show
