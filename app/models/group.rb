@@ -7,7 +7,8 @@ class Group < ActiveRecord::Base
 
   has_many :photos, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_many :users
+  has_many :users, dependent: :destroy
+
 
   def photos_missing_for_next_order
     self.photo_limit - self.photos.open.count
@@ -19,6 +20,7 @@ class Group < ActiveRecord::Base
 
   def insert_defaults
     self.email ||= Haikunator.haikunate
+    self.email.downcase!
     self.photo_limit ||= 25
   end
 

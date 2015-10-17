@@ -9,7 +9,7 @@ class WhatsappController < ApplicationController
     user.update_attribute(:name, @message.name) unless user.name?
 
     if @message.type.message?
-      if group = Group.find_by(email: @message.text)
+      if group = Group.find_by(email: @message.text.downcase)
         user.group = group
         user.save!
         message = "You have been added to the group #{group.email}. You can now send your pictures to be added there."
