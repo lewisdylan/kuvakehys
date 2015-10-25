@@ -14,6 +14,8 @@ gem 'country_select'
 gem 'kaminari'
 
 gem 'ongair', git: 'https://github.com/bumi/ongair.git'
+gem 'telegrammer'
+
 
 gem 'haikunator'
 
