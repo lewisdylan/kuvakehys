@@ -3,7 +3,17 @@
 <p>
   <strong>Group:</strong>
   <%= link_to @order.group.email, admin_group_path(@order.group) if @order.group %>
+  </p>
+
+<p>
+  <strong>Address:</strong><br />
+  <%= @order.group.recipient_name %><br />
+  <%= @order.group.recipient_address_1 %><br />
+  <%= @order.group.recipient_address_2 %><br />
+  <%= @order.group.recipient_postal_code %> <%= @order.group.recipient_city %><br /> 
+  <%= @order.group.recipient_country %><br />
 </p>
+
 <p>
   <strong>Status:</strong>
   <%= @order.status %>

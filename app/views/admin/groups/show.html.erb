@@ -6,6 +6,20 @@
 </p>
 
 <p>
+  <strong>Address:</strong><br />
+  <%= @group.recipient_name %><br />
+  <%= @group.recipient_address_1 %><br />
+  <%= @group.recipient_address_2 %><br />
+  <%= @group.recipient_postal_code %> <%= @group.recipient_city %><br /> 
+  <%= @group.recipient_country %><br />
+</p>
+
+<p>
+  <strong>Owner</strong>
+  <%= @group.owner_name %> <%= @group.owner_email %>
+</p>
+
+<p>
   <strong>Photos missing</strong>
   <%= @group.photos_missing_for_next_order %>
 </p>
