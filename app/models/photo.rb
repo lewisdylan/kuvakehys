@@ -28,7 +28,7 @@ class Photo < ActiveRecord::Base
       type: self.print_type,
       url: self.picture.url,
       copies: 1,
-      sizing: 'ShrinkToFit'
+      sizing: 'Crop' # or 'ShrinkToFit' see http://www.pwinty.com/ApiDocs/Resizing
     }
   end
 
