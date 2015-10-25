@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
       addressTownOrCity: self.group.recipient_city,
       postalOrZipCode: self.group.recipient_postal_code,
       stateOrCounty: '',
-      countryCode: self.group.recipient_country,
+      countryCode: ENV['PWINTY_PRINTING_COUNTRY_CODE'],
       destinationCountryCode: self.group.recipient_country,
       payment: "InvoiceMe",
       qualityLevel: "Standard"
