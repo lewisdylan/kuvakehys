@@ -33,7 +33,11 @@ class Photo < ActiveRecord::Base
   end
 
   def print_type
-    (self.width.to_i > 600 && self.height.to_i > 900) ? '10x15_cm' : '9x13_cm'
+    if self.group && ['GB', 'US', 'BR', 'AU', 'CA', 'CL', 'MX'].include?(self.group.printing_country)
+      '4x6'
+    else
+      (self.width.to_i > 600 && self.height.to_i > 900) ? '10x15_cm' : '9x13_cm'
+    end
   end
 
   def create_order_if_full

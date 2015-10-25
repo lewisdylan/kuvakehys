@@ -11,12 +11,20 @@ RSpec.describe Photo, type: :model do
   end
 
   describe 'print_type' do
+    context 'GB' do
+      let(:group) { FactoryGirl.create(:group, recipient_country: 'GB') }
+      subject { FactoryGirl.build(:photo, width: 601, height: 901, group: group) }
+      it { expect(subject.print_type).to eql('4x6') }
+    end
+
     context '10x15' do
-      subject { FactoryGirl.build(:photo, width: 601, height: 901) }
+      let(:group) { FactoryGirl.create(:group, recipient_country: 'DE') }
+      subject { FactoryGirl.build(:photo, width: 601, height: 901, group: group) }
       it { expect(subject.print_type).to eql('10x15_cm') }
     end
     context '9x13' do
-      subject { FactoryGirl.build(:photo, width: 599, height: 901) }
+      let(:group) { FactoryGirl.create(:group, recipient_country: 'DE') }
+      subject { FactoryGirl.build(:photo, width: 599, height: 901, group: group) }
       it { expect(subject.print_type).to eql('9x13_cm') }
     end
 

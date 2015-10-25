@@ -14,6 +14,15 @@ class Group < ActiveRecord::Base
     self.photo_limit - self.photos.open.count
   end
 
+  def printing_country
+    # manually compilled list from the pwinty countries endpoint
+    if ['AT', 'AU', 'BE', 'BR', 'CA', 'CH', 'CL', 'DE', 'DK', 'ES', 'FR', 'GB', 'IE', 'IT', 'MX', 'NL', 'NO', 'RO', 'SE', 'US'].include?(self.recipient_country)
+      self.recipient_country
+    else
+      'UK' #international shipping from UK
+    end
+  end
+
   def to_param
     email
   end
