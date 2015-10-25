@@ -19,7 +19,7 @@ class Group < ActiveRecord::Base
     if ['AT', 'AU', 'BE', 'BR', 'CA', 'CH', 'CL', 'DE', 'DK', 'ES', 'FR', 'GB', 'IE', 'IT', 'MX', 'NL', 'NO', 'RO', 'SE', 'US'].include?(self.recipient_country)
       self.recipient_country
     else
-      'UK' #international shipping from UK
+      'GB' #international shipping from GB
     end
   end
 
