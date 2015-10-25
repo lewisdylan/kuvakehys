@@ -16,7 +16,9 @@ class ChatSessionsController < ApplicationController
     user.update_attribute(:name, "#{@message.from.first_name} #{@message.from.last_name}") unless user.name?
 
     if @message.text.present?
-      if group = Group.find_by(email: @message.text.downcase)
+      if @message.text == '/start'
+        reply = "Hi #{@message.from.first_name}, welcome to tasveer on telegram. To which group do you want to send pictures?"
+      elsif group = Group.find_by(email: @message.text.downcase)
         user.group = group
         user.save!
         reply = "You have been added to the group #{group.email}. You can now send your pictures to be added there."
