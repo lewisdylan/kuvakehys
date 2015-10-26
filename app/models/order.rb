@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
       countryCode: self.group.printing_country,
       destinationCountryCode: self.group.recipient_country,
       payment: "InvoiceMe",
-      qualityLevel: "Standard"
+      qualityLevel: (self.group.international_shipping? ? "Pro" : "Standard") # only Pro can ship internationally
     )
     Rails.logger.info("order##{self.id} submitted order #{order.inspect}")
     self.update_attribute(:print_order_id, order['id'])
