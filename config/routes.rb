@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       end
     end
     resources :photos
-    resources :groups
+    resources :groups do
+      resources :orders, only: [:create]
+    end
     resources :users, only: [:index, :show]
     root 'groups#index'
   end

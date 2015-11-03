@@ -20,6 +20,16 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  def create
+    @group = Group.where(email: params[:group_id]).first!
+    unless @group.photos.open.any?
+      redirect_to admin_group_url(@group) and return
+    end
+    @order = @group.orders.create
+    @group.photos.open.update_all(order_id: @order.id)
+    redirect_to admin_order_url(@order)
+  end
+
   def destroy
     @order.destroy
     redirect_to admin_orders_url, notice: 'Order was successfully destroyed.'

@@ -57,6 +57,9 @@
 
 
 <h1>Next Photos</h1>
+<p>
+  <%= button_to 'Create order for next photos', admin_group_orders_url(@group), method: :post, data: { confirm: 'Are you sure?', disable_with: 'loading...' } if @group.photos.open.any? %>
+</p>
 
 <table>
   <thead>
