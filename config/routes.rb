@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   match 'telegram', to: 'chat_sessions#telegram', via: :post
 
   mount_griddler
-  root 'groups#new'
+  root 'pages#home'
 end

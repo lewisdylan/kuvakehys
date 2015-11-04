@@ -1,4 +1,45 @@
-<h1>Hallo!</h1>
+<div id="new-group">
+  <%= form_for(@group, html: {class: 'pure-form pure-form-aligned'}) do |f| %>
+    <fieldset>
+      <div class="pure-control-group">
+        <%= f.label :email %>
+        <%= f.text_field :email %>@<%= ENV['SMTP_DOMAIN'] %>
+      </div>
+    </fieldset>
 
-<%= render 'form' %>
+    <fieldset>
+      <legend>To whom shall we send the photos?</legend>
 
+      <div class="pure-control-group">
+        <%= f.label :recipient_name, 'Full name' %>
+        <%= f.text_field :recipient_name, class: 'pure-input-1-4'  %>
+      </div>
+      <div class="pure-control-group">
+        <%= f.label :recipient_address_1, 'c/o' %>
+        <%= f.text_field :recipient_address_1, class: 'pure-input-1-4'  %>
+      </div>
+      <div class="pure-control-group">
+        <%= f.label :recipient_address_2, 'Street' %>
+        <%= f.text_field :recipient_address_2, class: 'pure-input-1-4'  %>
+      </div>
+      <div class="pure-control-group">
+        <%= f.label :recipient_postal_code, 'ZIP' %>
+        <%= f.text_field :recipient_postal_code, class: 'pure-input-1-4'  %>
+      </div>
+      <div class="pure-control-group">
+        <%= f.label :recipient_city, 'City' %>
+        <%= f.text_field :recipient_city, class: 'pure-input-1-4'  %>
+      </div>
+      <div class="pure-control-group">
+        <%= f.label :recipient_country, 'Country' %>
+        <%= f.country_select :recipient_country, {}, { class: 'pure-input-1-4' } %>
+      </div>
+
+      <div class="actions call-to-action small">
+        <%= f.submit "Next", class: 'button pure-button button-go' %>
+      </div>
+
+    </fieldset>
+  <% end %>
+
+</div>

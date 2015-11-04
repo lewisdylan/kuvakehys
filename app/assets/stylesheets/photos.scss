@@ -1,3 +1,39 @@
 // Place all the styles related to the Photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html {
+  color: #565a5c;
+  background: white url(background.png) repeat-x bottom;
+  background-attachment: fixed;
+}
+
+#logo {
+  text-align: center;
+}
+h1, h2, h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  color: #565a5c;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.call-to-action {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 23px;
+  
+  &.small {
+    font-size: 18px;
+  }
+
+  
+  .button-go {
+    background: #8ed321;
+    color: white;
+    border-radius: 14px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+}
