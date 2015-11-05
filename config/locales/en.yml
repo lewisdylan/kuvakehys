@@ -23,4 +23,9 @@ en:
   home: 
     headline: Bring your shared memories to life!
     sub_headline: "the best photo service ever"
+  common:
+    next: next
+    save: save
+    cancel: cancel
+    email: e-mail
   hello: "Hello world"
