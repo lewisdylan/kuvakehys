@@ -6,6 +6,7 @@ html {
   color: #565a5c;
   background: white url(background.png) repeat-x bottom;
   background-attachment: fixed;
+  line-height: 1.4
 }
 
 #logo {
@@ -18,6 +19,29 @@ h1, h2, h3 {
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
+}
+
+.group-form .group-recipient {
+  margin-top: 20px;
+}
+
+.group-form .group-identifier .identifier {
+  text-align: center;
+}
+.group-form .group-identifier .identifier input {
+  display: inline;
+}
+
+.actions {
+  text-align: center;
+}
+
+.group-form fieldset legend {
+  color: #565a5c;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 120%;
+  text-align: center;
 }
 
 .call-to-action {
