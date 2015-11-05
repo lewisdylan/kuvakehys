@@ -6,7 +6,7 @@ html {
   color: #565a5c;
   background: white url(background.png) repeat-x bottom;
   background-attachment: fixed;
-  line-height: 1.4
+  line-height: 1.6
 }
 
 #logo {
@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 20px;
 }
 
-.group-form .group-identifier .identifier {
+.group-form .group-identifier {
   text-align: center;
 }
 .group-form .group-identifier .identifier input {
@@ -59,5 +59,26 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
     border-radius: 14px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+.group-details {
+  margin-bottom:160px;
+  text-align: center;
+}
+.photo-row-wrapper {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  overflow: hidden;
+  .photo-row {
+    width: 200%;
+    overflow: hidden;
+    height: 150px;
+    .picture img {
+      float: left;
+      height: 150px;
+    }
   }
 }
