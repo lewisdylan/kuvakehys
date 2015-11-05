@@ -10,6 +10,10 @@ class Group < ActiveRecord::Base
   has_many :users, dependent: :destroy
 
 
+  def email_address
+    "#{self.email}@#{ENV['SMTP_DOMAIN']}"
+  end
+
   def photos_missing_for_next_order
     self.photo_limit - self.photos.open.count
   end

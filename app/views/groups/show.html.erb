@@ -4,7 +4,7 @@
   <div id="group-details" class="pure-u-10-24">
     E-Mail photos to this address:
     <h1 class="group-email">
-      <%= link_to "#{@group.email}@#{ENV['SMTP_DOMAIN']}", "mailto:#{@group.email}@#{ENV['SMTP_DOMAIN']}" %>
+      <%= link_to @group.email_address, "mailto:#{@group.email_address}" %>
     </h1>
     <p>
       Once the album has collected <%= @group.photo_limit %> the photos will be printed and shipped.
@@ -15,7 +15,7 @@
 
 
     <div class="call-to-action small">
-      <%= link_to "Invite your friends and family", '#', class: "button-go pure-button" %>
+      <%= link_to "Invite your friends and family", "mailto:?subject=Photos for #{@group.recipient_name}&body=Hi! \n\nPlease send photos to #{@group.email_address}. We collect them and send printouts to #{@group.recipient_name}.", class: "button-go pure-button" %>
     </div>
 
     <div class="pure-g">
@@ -40,7 +40,7 @@
         <h4>Statistics</h4>
         Photos: <%= @group.photos.count %><br />
         Albums: <%= @group.orders.count %><br />
-        missing for the next: <%= @group.photos_missing_for_next_order %><br />
+        currently missing: <%= @group.photos_missing_for_next_order %><br />
 
         Users: <%= @group.users.count %><br />
       </div>
