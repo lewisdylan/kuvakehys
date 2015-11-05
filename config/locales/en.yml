@@ -20,4 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  home: 
+    headline: Bring your shared memories to life!
   hello: "Hello world"
