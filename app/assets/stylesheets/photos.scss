@@ -67,6 +67,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom:160px;
   text-align: center;
 }
+.group-email {
+  border: 2px solid #8ed321;
+  border-radius: 14px;
+  color: #565a5c;
+  a, a:visited {
+    color: #565a5c;
+    text-decoration: none;
+  }
+}
+
 .photo-row-wrapper {
   position: fixed;
   bottom: 0px;

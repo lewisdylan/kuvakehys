@@ -6,6 +6,7 @@ class Photo < ActiveRecord::Base
 
   scope :open, -> { where('order_id IS NULL') }
   scope :ordered, -> { where('order_id IS NOT NULL') }
+  scope :latest, -> { order('created_at DESC') }
 
   validates_uniqueness_of :picture_fingerprint, scope: [:group_id, :message_id], allow_blank: true
   before_save :analyze_picture
