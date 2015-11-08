@@ -68,6 +68,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 .group-email {
+  font-size: 22px;
   border: 2px solid #8ed321;
   border-radius: 14px;
   color: #565a5c;
@@ -75,6 +76,11 @@ h1, h2, h3, h4, h5, h6 {
     color: #565a5c;
     text-decoration: none;
   }
+}
+
+.group-email:hover {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
 }
 
 .photo-row-wrapper {
@@ -85,10 +91,10 @@ h1, h2, h3, h4, h5, h6 {
   .photo-row {
     width: 200%;
     overflow: hidden;
-    height: 150px;
+    height: 130px;
     .picture img {
       float: left;
-      height: 150px;
+      height: 130px;
     }
   }
 }

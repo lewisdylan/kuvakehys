@@ -3,7 +3,7 @@
 
   <div id="group-details" class="pure-u-10-24">
     E-Mail photos to this address:
-    <h1 class="group-email">
+    <h1 class="group-email animated">
       <%= link_to @group.email_address, "mailto:#{@group.email_address}" %>
     </h1>
     <p>
@@ -56,7 +56,7 @@
   <div class="photo-row">
     <% @group.photos.latest.limit(10).each do |photo| %>
       <div class="picture">
-        <%= image_tag photo.picture.url(:small), class: 'pure-img' %>
+        <%= image_tag photo.picture.url(:small), alt: '', class: 'pure-img' %>
       </div>
     <% end %>
   </div>
