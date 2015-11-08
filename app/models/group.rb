@@ -6,9 +6,11 @@ class Group < ActiveRecord::Base
   before_create :insert_defaults
 
   has_many :photos, dependent: :destroy
+
   has_many :orders, dependent: :destroy
   has_many :users, dependent: :destroy
 
+  identify_with :grp
 
   # we all love long method names, don't we?
   def has_enough_photos_for_a_new_order?

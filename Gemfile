@@ -12,6 +12,7 @@ gem 'aws-sdk', '~> 1.6'
 gem 'pwinty', git: 'https://github.com/bumi/pwinty.git'
 gem 'country_select'
 gem 'kaminari'
+gem 'mad_id'
 
 gem 'ongair', git: 'https://github.com/bumi/ongair.git'
 gem 'telegrammer'

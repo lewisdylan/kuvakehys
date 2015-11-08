@@ -138,6 +138,9 @@ GEM
       railties (>= 3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    mad_id (1.1.0)
+      activerecord (>= 4.1)
+      activesupport (>= 4.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -286,6 +289,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   lograge
+  mad_id
   ongair!
   paperclip
   pg
