@@ -1,9 +1,14 @@
 Hi <%= @name %>,
 
 super, vielen Dank! Dein Foto wurde in die Liste aufgenommen.
-<% if @group.photos_missing_for_next_order > 0 %>
+<% if @order.present? %>
+Yay, mit deinen Fotos wurde das Album voll und die Fotos sind nun auf dem Weg. 
+<% else %>
 Aktuell fehlen noch <%= @group.photos_missing_for_next_order %> Fotos bis zur nächsten Lieferung. 
 <% end %>
 
-Viele Grüße
+<% if @photos.any?(&:has_bad_quality?) %>
+Bitte beachte, die Fotos sollten eine möglichst hoche Auflösung haben um in guter Qualität gedruckt werden zu können.
+<% end %>
 
+Viele Grüße

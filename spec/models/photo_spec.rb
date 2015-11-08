@@ -30,24 +30,5 @@ RSpec.describe Photo, type: :model do
 
   end
 
-  describe "create order" do
-    context 'full' do
-      let(:group) { FactoryGirl.create(:group, photo_limit: 2) }
-      before do
-        FactoryGirl.create(:photo, group: group)
-      end
-
-      it 'creates a new order' do
-        expect { FactoryGirl.create(:photo, group: group) }.to change { Order.count }
-      end
-    end
-
-    context 'not full' do
-      let(:group) { FactoryGirl.create(:group, photo_limit: 2) }
-      it 'creates a new order' do
-        expect { FactoryGirl.create(:photo, group: group) }.not_to change { Order.count }
-      end
-    end
-  end
 
 end

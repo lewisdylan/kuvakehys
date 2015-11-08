@@ -10,6 +10,11 @@ class Group < ActiveRecord::Base
   has_many :users, dependent: :destroy
 
 
+  # we all love long method names, don't we?
+  def has_enough_photos_for_a_new_order?
+    self.photos.open.count >= self.photo_limit
+  end
+
   def email_address
     "#{self.email}@#{ENV['SMTP_DOMAIN']}"
   end

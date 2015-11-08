@@ -21,7 +21,8 @@ class EmailPhotoProcessor
         sender_name: @email.from[:name]
       })
     end
-    UserMailer.email_processed(@email, group).deliver_now if photos.any?(&:valid?)
+    order = group.has_enough_photos_for_a_new_order? ? group.orders.create(user: user, photos: group.photos.open) : nil
+    UserMailer.email_processed(email: @email, group: group, photos: photos, order: order).deliver_now if photos.any?(&:valid?)
   end
 
   def verify(api_key, token, timestamp, signature)

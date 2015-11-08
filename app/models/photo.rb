@@ -8,9 +8,9 @@ class Photo < ActiveRecord::Base
   scope :ordered, -> { where('order_id IS NOT NULL') }
   scope :latest, -> { order('created_at DESC') }
 
-  validates_uniqueness_of :picture_fingerprint, scope: [:group_id, :message_id], allow_blank: true
+  # we want to make sure photos are unique per group and order
+  validates_uniqueness_of :picture_fingerprint, scope: [:group_id, :order_id], allow_blank: true
   before_save :analyze_picture
-  after_create :create_order_if_full
 
   if Rails.env.production?
     has_attached_file :picture, styles: { small: '200', big: '600' },
@@ -41,10 +41,8 @@ class Photo < ActiveRecord::Base
     end
   end
 
-  def create_order_if_full
-    return if self.group.blank? || self.group.photos.open.count < self.group.photo_limit
-    order = self.group.orders.create()
-    self.group.photos.open.update_all(order_id: order.id)
+  def has_bad_quality?
+    self.width.to_i < 800 || self.height.to_i < 800
   end
 
   def analyze_picture

@@ -1,4 +1,4 @@
 YAY! 
 
-we've got a new order for <%= @group.email %>!
+we've got a new order for <%= @order.try(:group).try(:email) %>!
 

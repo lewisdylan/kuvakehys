@@ -37,7 +37,7 @@ describe EmailPhotoProcessor do
   context 'duplicates' do
     let(:to) {  [{ raw: "#{group.email}@email.com", email: "#{group.email}@email.com", token: group.email, host: 'email.com' }] }
     let(:group) { FactoryGirl.create(:group) }
-    let(:email) { FactoryGirl.build(:email, :with_attachment, to: to, headers: {'Message-ID' => 'duplicate'}) }
+    let(:email) { FactoryGirl.build(:email, :with_attachment, to: to) }
     let(:processor) { EmailPhotoProcessor.new(email) }
 
     it 'ignores duplicates' do
@@ -45,6 +45,37 @@ describe EmailPhotoProcessor do
       EmailPhotoProcessor.new(email).process
       EmailPhotoProcessor.new(email).process
       expect(group.photos.count).to eql(1)
+    end
+  end
+
+  describe 'order' do
+    let(:group) { FactoryGirl.create(:group, photo_limit: 2) }
+    let(:to) {  [{ raw: "#{group.email}@email.com", email: "#{group.email}@email.com", token: group.email, host: 'email.com' }] }
+    let(:email) { FactoryGirl.build(:email, :with_attachment, to: to) }
+    context 'full' do
+      # we already have a photo
+      before do
+        FactoryGirl.create(:photo, group: group)
+      end
+
+      it 'create a new order' do
+        expect { EmailPhotoProcessor.new(email).process }.to  change { Order.count }.by(1)
+        expect(Order.last.photos.count).to eql(2)
+        expect(Order.last.user).to eql(User.find_by(email: email.from[:email]))
+      end
+
+      it 'does not change photos from old orders' do
+        old_order = FactoryGirl.create(:order)
+        old_photo = FactoryGirl.create(:photo, order: old_order, group: group)
+        EmailPhotoProcessor.new(email).process
+        expect(old_photo.reload.order).to eql(old_order)
+      end
+    end
+
+    context 'not enough photos' do
+      it 'does not create an order' do
+        expect { EmailPhotoProcessor.new(email).process }.not_to change { Order.count }
+      end
     end
   end
 

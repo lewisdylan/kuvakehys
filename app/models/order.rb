@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :group
   has_many :photos
+  belongs_to :user
 
   after_create :notify_admin
 

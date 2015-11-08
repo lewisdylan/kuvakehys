@@ -33,3 +33,15 @@
 
     rails server
     open [http://localhost:3000](http://localhost:3000)
+
+### Production setup
+
+1) e-mail integration
+
+for incoming emails we are using [mailgun](http://mail
+
+### Overview
+
+ 
+
+
