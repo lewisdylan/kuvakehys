@@ -13,7 +13,7 @@ class ChatSessionsController < ApplicationController
     @photo = @update.message.photo.sort {|a, b| a.file_size <=> b.file_size }.last
 
     user = User.find_or_create_by(telegram_id: @message.from.id.to_s)
-    user.update_attribute(:name, "#{@message.from.first_name} #{@message.from.last_name}") unless user.name?
+    user.update_attributes(last_import_at: Time.now, name: "#{@message.from.first_name} #{@message.from.last_name}")
 
     if @message.text.present?
       if @message.text == '/start'

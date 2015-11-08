@@ -14,6 +14,7 @@ describe EmailPhotoProcessor do
         expect(group.photos.last.user.email).to eql(email.from[:email])
         expect(group.photos.last.user.name).to eql(email.from[:name])
         expect(group.photos.last.user).to eql(User.last)
+        expect(User.last.last_import_at).to_not be_blank
       end
     end
 
