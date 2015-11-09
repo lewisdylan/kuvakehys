@@ -1,7 +1,11 @@
 FactoryGirl.define do
+  sequence :user_email do |n|
+    "user-#{n}@tasveer.de"
+  end
   factory :user do
-    phone "MyString"
-group_id 1
+    email { generate(:user_email) }
+    group_id 1
+    name 'Butare Rwanda'
   end
 
 end

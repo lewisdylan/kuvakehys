@@ -10,7 +10,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     it 'sends an email saying thanks' do
       mailer = UserMailer.email_processed(email: email, group: group, photos: [])
-      expect(mailer.from).to eql([ENV['EMAIL_SENDER_ADDRESS']])
+      expect(mailer.from).to eql([group.email_address])
       expect(mailer.to).to eql([ email.from[:email] ])
       expect(mailer.body.to_s).to match(/vielen Dank/)
       expect(mailer.body.to_s).to match(Regexp.new("#{group.photo_limit} Fotos"))
@@ -33,5 +33,18 @@ RSpec.describe UserMailer, type: :mailer do
       end
     end
 
+  end
+
+  describe "inactivity notification" do
+    let!(:user) { FactoryGirl.create(:user) }
+    let!(:group) { FactoryGirl.create(:group) }
+    let!(:photo) { FactoryGirl.create(:photo, user: user, group: group) }
+
+    it 'tells the user to send more emails' do
+      mailer = UserMailer.inactivity_notification(user)
+      expect(mailer.from).to include(group.email_address)
+      expect(mailer.to).to eql([user.email])
+      expect(mailer.body.to_s).to match(Regexp.new(group.email_address))
+    end
   end
 end
