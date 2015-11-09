@@ -16,6 +16,8 @@ gem 'mad_id'
 
 gem 'ongair', git: 'https://github.com/bumi/ongair.git'
 gem 'telegrammer'
+gem 'rollbar', '~> 2.4.0'
+gem 'oj', '~> 2.12.14'
 
 
 gem 'haikunator'
