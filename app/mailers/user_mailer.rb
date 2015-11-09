@@ -19,4 +19,10 @@ class UserMailer < ApplicationMailer
     from = @group.email_address
     mail(to: user.email, from: from,  subject: 'Your photos are missed')
   end
+
+  def new_order(order, user)
+    @user = user
+    @order = order
+    mail(to: user.email, from: order.group.email_address, subject: 'A new package is on the way')
+  end
 end

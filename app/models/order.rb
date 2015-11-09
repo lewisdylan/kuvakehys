@@ -1,9 +1,11 @@
 class Order < ActiveRecord::Base
   belongs_to :group
   has_many :photos
+  has_many :users, through: :photos
   belongs_to :user
 
   after_create :notify_admin
+  after_create :notify_users
 
   def submitted?
     self.status == 'submitted'
@@ -55,5 +57,11 @@ class Order < ActiveRecord::Base
 
   def notify_admin
     AdminMailer.new_order(self).deliver_now
+  end
+
+  def notify_users
+    self.users.where.not(id: self.user.try(:id)).uniq.each do |u|
+      UserMailer.new_order(self, u).deliver_now
+    end
   end
 end
