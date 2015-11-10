@@ -26,7 +26,7 @@ class Admin::GroupsController < Admin::BaseController
 
   private
     def set_group
-      @group = Group.where(email: params[:id]).first!
+      @group = Group.find_by_mad_id!(params[:id])
     end
 
     def group_params

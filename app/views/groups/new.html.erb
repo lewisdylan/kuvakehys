@@ -22,30 +22,32 @@
     <fieldset class="group-recipient">
       <legend>To whom shall we send the photos?</legend>
 
-      <div class="pure-control-group">
-        <%= f.label :recipient_name, 'Full name' %>
-        <%= f.text_field :recipient_name, required: true, class: 'pure-input-1'  %>
-      </div>
-      <div class="pure-control-group">
-        <%= f.label :recipient_address_1, 'Street' %>
-        <%= f.text_field :recipient_address_1, required: true, class: 'pure-input-1'  %>
-      </div>
-      <div class="pure-control-group">
-        <%= f.label :recipient_address_2, 'c/o' %>
-        <%= f.text_field :recipient_address_2, class: 'pure-input-1'  %>
-      </div>
-      <div class="pure-control-group">
-        <%= f.label :recipient_postal_code, 'ZIP' %>
-        <%= f.text_field :recipient_postal_code, required: true, class: 'pure-input-1'  %>
-      </div>
-      <div class="pure-control-group">
-        <%= f.label :recipient_city, 'City' %>
-        <%= f.text_field :recipient_city, required: true, class: 'pure-input-1'  %>
-      </div>
-      <div class="pure-control-group">
-        <%= f.label :recipient_country, 'Country' %>
-        <%= f.country_select :recipient_country, {}, { class: 'pure-input-1' } %>
-      </div>
+      <%= f.fields_for :recipients do |rf| %> 
+        <div class="pure-control-group">
+          <%= rf.label :name, 'Full name' %>
+          <%= rf. text_field :name, required: true, class: 'pure-input-1'  %>
+        </div>
+        <div class="pure-control-group">
+          <%= rf. label :address_1, 'Street' %>
+          <%= rf.text_field :address_1, required: true, class: 'pure-input-1'  %>
+        </div>
+        <div class="pure-control-group">
+          <%= rf.label :address_2, 'c/o' %>
+          <%= rf.text_field :address_2, class: 'pure-input-1'  %>
+        </div>
+        <div class="pure-control-group">
+          <%= rf.label :postal_code, 'ZIP' %>
+          <%= rf.text_field :postal_code, required: true, class: 'pure-input-1'  %>
+        </div>
+        <div class="pure-control-group">
+          <%= rf.label :city, 'City' %>
+          <%= rf.text_field :city, required: true, class: 'pure-input-1'  %>
+        </div>
+        <div class="pure-control-group">
+          <%= rf.label :country, 'Country' %>
+          <%= rf.country_select :country, {}, { class: 'pure-input-1' } %>
+        </div>
+      <% end %>
 
       <div class="actions call-to-action small">
         <%= f.submit "Next", class: 'button pure-button button-go' %>

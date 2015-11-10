@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :groups do
+    resources :recipients, only: [:new, :create, :destroy]
     member do
       get :preview
     end

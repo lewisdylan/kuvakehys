@@ -1,9 +1,12 @@
 class Order < ActiveRecord::Base
   belongs_to :group
   has_many :photos
+  has_many :recipient_orders
+  has_many :recipients, through: :recipient_orders
   has_many :users, through: :photos
   belongs_to :user
 
+  after_create :create_recipient_orders
   after_create :notify_admin
   after_create :notify_users
 
@@ -18,40 +21,23 @@ class Order < ActiveRecord::Base
   end
 
   def create_order
-    return true if self.print_order_id.present?
-    order = PWINTY.create_order(
-      recipientName: self.group.recipient_name,
-      address1: self.group.recipient_address_1,
-      address2: self.group.recipient_address_2,
-      addressTownOrCity: self.group.recipient_city,
-      postalOrZipCode: self.group.recipient_postal_code,
-      stateOrCounty: '',
-      countryCode: self.group.printing_country,
-      destinationCountryCode: self.group.recipient_country,
-      payment: "InvoiceMe",
-      qualityLevel: (self.group.international_shipping? ? "Pro" : "Standard") # only Pro can ship internationally
-    )
-    Rails.logger.info("order##{self.id} submitted order #{order.inspect}")
-    self.update_attribute(:print_order_id, order['id'])
-    self.update_attribute(:status, 'order_created')
+    Rails.logger.error("order##{self.id}: creating orders")
+    self.recipient_orders.each do |ro|
+      ro.create_order
+    end
   end
 
   def add_photos
-    return true unless self.status == 'order_created'
-    PWINTY.add_photos(self.print_order_id, self.photos.map(&:to_order))
-    self.update_attribute(:status, 'photos_added')
+    Rails.logger.error("order##{self.id}: adding photos")
+    self.recipient_orders.each do |ro|
+      ro.add_photos
+    end
   end
 
   def validate_and_submit_order
-    order_status = PWINTY.get_order_status(self.print_order_id)
-    if order_status['isValid']
-      PWINTY.update_order_status(self.print_order_id, 'Submitted')
-      Rails.logger.info("order##{self.id} updated order status to Submitted")
-      self.update_attribute(:status, 'submitted')
-      true
-    else
-      Rails.logger.error("order##{self.id} not submitted. status=#{order_status}")
-      false
+    Rails.logger.error("order##{self.id}: submitting")
+    self.recipient_orders.each do |ro|
+      ro.validate_and_submit_order
     end
   end
 
@@ -62,6 +48,16 @@ class Order < ActiveRecord::Base
   def notify_users
     self.users.where.not(id: self.user.try(:id)).uniq.each do |u|
       UserMailer.new_order(self, u).deliver_now
+    end
+  end
+
+  def create_recipient_orders
+    if self.group.blank?
+      Rails.logger.error('order##{self.id}: no group id present. ignoring.')
+      return
+    end
+    self.group.recipients.each do |recipient|
+      self.recipient_orders.create(recipient: recipient, group: self.group)
     end
   end
 end

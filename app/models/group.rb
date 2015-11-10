@@ -6,10 +6,12 @@ class Group < ActiveRecord::Base
   before_create :insert_defaults
 
   has_many :photos, dependent: :destroy
-
+  has_many :recipients, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :users, dependent: :destroy
+  has_many :recipient_orders, dependent: :destroy
 
+  accepts_nested_attributes_for :recipients
   identify_with :grp
 
   # we all love long method names, don't we?
@@ -39,10 +41,6 @@ class Group < ActiveRecord::Base
     else
       'GB' #international shipping from GB
     end
-  end
-
-  def to_param
-    email
   end
 
   def insert_defaults
