@@ -41,10 +41,6 @@ class Group < ActiveRecord::Base
     end
   end
 
-  def to_param
-    email
-  end
-
   def insert_defaults
     self.email ||= Haikunator.haikunate
     self.email.downcase!
