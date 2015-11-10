@@ -21,7 +21,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def create
-    @group = Group.where(email: params[:group_id]).first!
+    @group = Group.find_by_mad_id!(params[:group_id])
     unless @group.photos.open.any?
       redirect_to admin_group_url(@group) and return
     end
