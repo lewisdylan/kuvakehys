@@ -10,14 +10,7 @@
         All photos sent to this address will be collected and printed.
       </div>
     </fieldset>
-    <fieldset>
-      <legend>Your admin email</legend>
-      <div class="pure-control-group">
-        <%= f.label :owner_email, 'Your E-Mail address' %>
-        <%= f.text_field :owner_email, required: true, class: 'pure-input-1' %>
-      </div>
 
-    </fieldset>
 
     <fieldset class="group-recipient">
       <legend>To whom shall we send the photos?</legend>
@@ -45,6 +38,15 @@
       <div class="pure-control-group">
         <%= f.label :recipient_country, 'Country' %>
         <%= f.country_select :recipient_country, {}, { class: 'pure-input-1' } %>
+      </div>
+
+    </fieldset>
+
+    <fieldset>
+      <legend>Your email address</legend>
+      <div class="pure-control-group">
+        <%= f.label :owner_email, 'Your E-Mail address to manage this group' %>
+        <%= f.text_field :owner_email, required: true, class: 'pure-input-1' %>
       </div>
 
       <div class="actions call-to-action small">
