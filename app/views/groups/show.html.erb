@@ -12,7 +12,7 @@
 
 
   <div class="call-to-action small">
-    <%= link_to "Invite your friends and family", "mailto:?subject=Photos for #{@group.recipient_name}&body=Hi! \n\nPlease send photos to #{@group.email_address}. We collect them and send printouts to #{@group.recipient_name}.", class: "button-go pure-button" %>
+    <%= link_to "Invite your friends and family", "mailto:?subject=Photos for #{@group.recipient_names}&body=Hi! \n\nPlease send photos to #{@group.email_address}. We collect them and send prints to #{@group.recipient_names}.", class: "button-go pure-button" %>
   </div>
 
   <% if @manage %>

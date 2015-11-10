@@ -8,17 +8,6 @@ class Admin::GroupsController < Admin::BaseController
   def show
   end
 
-  def edit
-  end
-
-  def update
-    if @group.update(group_params)
-      redirect_to admin_group_path(@group), notice: 'Group was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @group.destroy
     redirect_to admin_groups_url, notice: 'Group was successfully destroyed.'
@@ -30,6 +19,6 @@ class Admin::GroupsController < Admin::BaseController
     end
 
     def group_params
-      params.require(:group).permit(:name, :email, :photo_limit, :recipient_name, :recipient_address_1, :recipient_address_2, :recipient_postal_code, :recipient_city, :recipient_country)
+      params.require(:group).permit(:name, :email, :photo_limit)
     end
 end

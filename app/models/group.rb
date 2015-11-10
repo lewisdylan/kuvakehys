@@ -23,6 +23,10 @@ class Group < ActiveRecord::Base
     "#{self.email}@#{ENV['SMTP_DOMAIN']}"
   end
 
+  def recipient_names
+    self.recipients.map(&:name).to_sentence
+  end
+
   def photos_missing_for_next_order
     self.photo_limit - self.photos.open.count
   end
