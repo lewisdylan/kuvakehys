@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def show
+    @manage = true
   end
 
   def new
@@ -38,9 +39,14 @@ class GroupsController < ApplicationController
     end
   end
 
+  def preview
+    @group = Group.where(email: params[:id]).first!
+    render :show
+  end
+
   private
     def set_group
-      @group = Group.where(email: params[:id]).first!
+      @group = Group.find_by_mad_id!(params[:id])
     end
 
     def group_params

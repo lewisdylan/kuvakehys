@@ -25,4 +25,9 @@ class UserMailer < ApplicationMailer
     @order = order
     mail(to: user.email, from: order.group.email_address, subject: 'A new package is on the way')
   end
+
+  def login(email, groups)
+    @groups = groups
+    mail(to: email, subject: 'Login link')
+  end
 end

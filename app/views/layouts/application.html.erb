@@ -9,9 +9,16 @@
 <body>
 
 <div id="wrapper">
+
   <div id="logo">
     <h1><%= image_tag "logo.png", alt: "Tasveer.de" %></h1>
   </div>
+  <% [:notice, :error, :success].each do |f| %>
+    <% next unless flash[f].present? %>
+    <div class="flash <%=  f %>">
+      <%= flash[f] %>
+    </div>
+  <% end %>
 
   <%= yield %>
 

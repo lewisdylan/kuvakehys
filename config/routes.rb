@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :groups
+  resources :groups do
+    member do
+      get :preview
+    end
+  end
 
   namespace :admin do
     resources :orders, only: [:index, :show, :edit, :update, :destroy] do
@@ -15,6 +19,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
     root 'groups#index'
   end
+
+  post '/login' => 'sessions#create'
+  get '/login' => 'sessions#new'
 
   match 'whatsapp', to: 'chat_sessions#whatsapp', via: :post
   match 'telegram', to: 'chat_sessions#telegram', via: :post
