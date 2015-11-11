@@ -10,14 +10,10 @@ class Order < ActiveRecord::Base
   after_create :notify_admin
   after_create :notify_users
 
-  def submitted?
-    self.status == 'submitted'
-  end
-
   def submit!
-    create_order unless self.print_order_id.present?
-    add_photos if self.status == 'order_created'
-    validate_and_submit_order if self.status == 'photos_added'
+    create_order
+    add_photos
+    validate_and_submit_order
   end
 
   def create_order

@@ -26,7 +26,7 @@
     <% @order.recipient_orders.each do |order| %>
       <tr>
         <td>
-          <%= order.name %> - <%= order.postal_code %> <%= order.city %>
+          <%= order.recipient.name %> - <%= order.recipient.postal_code %> <%= order.recipient.city %>
         </td>
         <td><%= order.status %></td>
         <td>
@@ -65,7 +65,7 @@
         <td><%= photo.sender_name %></td>
         <td><%= link_to 'Show', admin_photo_path(photo) %></td>
         <td><%= link_to 'Edit', edit_admin_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', admin_photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } unless @order.print_order_id? %></td>
+        <td><%= link_to 'Destroy', admin_photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
