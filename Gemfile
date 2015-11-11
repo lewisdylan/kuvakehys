@@ -23,8 +23,6 @@ gem 'telegrammer'
 gem 'rollbar', '~> 2.4.0'
 gem 'oj', '~> 2.12.14'
 
-gem 'haikunator'
-
 group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"

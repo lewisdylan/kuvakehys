@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.new(email: Haikunator.haikunate, recipient_country: 'DE')
+    @group = Group.new(recipient_country: 'DE')
   end
 
   def edit

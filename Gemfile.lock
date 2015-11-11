@@ -114,7 +114,6 @@ GEM
       rails (>= 3.2.0)
     griddler-mailgun (1.0.2)
       griddler
-    haikunator (1.1.0)
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -288,7 +287,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   griddler-mailgun
-  haikunator
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
