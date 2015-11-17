@@ -2,7 +2,8 @@ Hello <%= @groups.first.owner_name %>
 
 use the following links to manage your groups: 
 <% @groups.each do |group| %>
-<%= group.email_address %>: <%= group_url(group.identifier, host: ENV['SMTP_DOMAIN']) %>
+* <%= group.email_address %>:    <%= group_url(group.identifier, host: ENV['SMTP_DOMAIN']) %>
+
 <% end %>
 
 Please simply reply to this email if you have questions.
