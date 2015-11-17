@@ -114,7 +114,6 @@ GEM
       rails (>= 3.2.0)
     griddler-mailgun (1.0.2)
       griddler
-    haikunator (1.1.0)
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -159,6 +158,9 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    passenger (5.0.21)
+      rack
+      rake (>= 0.8.1)
     pg (0.18.2)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -166,8 +168,6 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    puma (2.11.3)
-      rack (>= 1.1, < 2.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -287,7 +287,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   griddler-mailgun
-  haikunator
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
@@ -296,10 +295,10 @@ DEPENDENCIES
   oj (~> 2.12.14)
   ongair!
   paperclip
+  passenger (>= 5.0.0)
   pg
   pry
   pry-rails
-  puma
   pwinty!
   quiet_assets
   rails (= 4.2.4)
