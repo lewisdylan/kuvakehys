@@ -3,27 +3,39 @@
 <p>
   <strong>Group:</strong>
   <%= link_to @order.group.email, admin_group_path(@order.group) if @order.group %>
-  </p>
-
-<p>
-  <strong>Address:</strong><br />
-  <%= @order.group.recipient_name %><br />
-  <%= @order.group.recipient_address_1 %><br />
-  <%= @order.group.recipient_address_2 %><br />
-  <%= @order.group.recipient_postal_code %> <%= @order.group.recipient_city %><br /> 
-  <%= @order.group.recipient_country %><br />
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @order.status %>
+  <strong>Manage:</strong>
+  <%= button_to 'Prepare', prepare_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
+  <%= button_to 'Submit', submit_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
 </p>
-<p>
-  <strong>Print Order id:</strong>
-  <%= link_to @order.print_order_id, "https://dashboard.pwinty.com/Order/Detail/#{@order.print_order_id}" if @order.print_order_id? %>
-  <%= button_to 'Prepare', prepare_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.print_order_id? %>
-  <%= button_to 'Submit', submit_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } unless @order.submitted? %>
-</p>
+
+
+<h1>Recipients</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Print Order Id</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.recipient_orders.each do |order| %>
+      <tr>
+        <td>
+          <%= order.recipient.name %> - <%= order.recipient.postal_code %> <%= order.recipient.city %>
+        </td>
+        <td><%= order.status %></td>
+        <td>
+          <%= link_to order.print_order_id, "https://dashboard.pwinty.com/Order/Detail/#{order.print_order_id}" if order.print_order_id? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <p>
   <strong>Created at</strong>
@@ -53,7 +65,7 @@
         <td><%= photo.sender_name %></td>
         <td><%= link_to 'Show', admin_photo_path(photo) %></td>
         <td><%= link_to 'Edit', edit_admin_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', admin_photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } unless @order.print_order_id? %></td>
+        <td><%= link_to 'Destroy', admin_photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

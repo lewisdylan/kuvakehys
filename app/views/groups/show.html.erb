@@ -12,21 +12,23 @@
 
 
   <div class="call-to-action small">
-    <%= link_to "Invite your friends and family", "mailto:?subject=Photos for #{@group.recipient_name}&body=Hi! \n\nPlease send photos to #{@group.email_address}. We collect them and send printouts to #{@group.recipient_name}.", class: "button-go pure-button" %>
+    <%= link_to "Invite your friends and family", "mailto:?subject=Photos for #{@group.recipient_names}&body=Hi! \n\nPlease send photos to #{@group.email_address}. We collect them and send prints to #{@group.recipient_names}.", class: "button-go pure-button" %>
   </div>
 
   <% if @manage %>
     <div class="pure-g">
       <div class="pure-u-1-3">
 
-        <h4>Recipients</h4>
-        <%= @group.recipient_name %><br />
-        <%= @group.recipient_address_1 %><br />
-        <% if @group.recipient_address_2? %>
-          <%= @group.recipient_address_2 %><br />
+        <h4>Recipients (<%= link_to "+", new_group_recipient_url(@group) %>)</h4>
+        <% @group.recipients.each do |recipient| %>
+          <%= recipient.name %> <% if @group.recipients.many? %> (<%= link_to "-", group_recipient_url(@group, recipient), method: :delete %>)<% end %><br />
+          <%= recipient.address_1 %><br />
+          <% if recipient.address_2? %>
+            <%= recipient.address_2 %><br />
+          <% end %>
+          <%= recipient.postal_code %> <%= recipient.city %> - <%= recipient.country %>
+          <hr />
         <% end %>
-        <%= @group.recipient_postal_code %> <%= @group.recipient_city %><br />
-        <%= @group.recipient_country %>
       </div>
 
       <div class="pure-u-1-3">

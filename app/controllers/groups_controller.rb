@@ -6,7 +6,8 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.new(recipient_country: 'DE')
+    @group = Group.new
+    @group.recipients.build(country: 'DE')
   end
 
   def edit
@@ -30,7 +31,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -50,7 +51,7 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name, :email, :photo_limit, :recipient_name, :recipient_address_1, :recipient_address_2, :recipient_postal_code, :recipient_city, :recipient_country)
+      params.require(:group).permit(:name, :email, :owner_email, :recipients_attributes => [:name, :address_1, :address_2, :postal_code, :city, :country])
     end
 
 end
