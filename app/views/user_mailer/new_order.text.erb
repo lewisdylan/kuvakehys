@@ -1,6 +1,10 @@
 Hi <%= @user.name %>,
 
-a new package is on the way to <%= @order.group.recipients.map(&:name).to_sentence %>. 
+Thanks a lot for sending your pictures to <%= @order.group.email_address %>. The album is now complete and on its way to <%= @order.group.recipients.map(&:name).to_sentence %>.
 
-Thank you for your contribution!
+Ready to create the next album? Reply with a photo to this email or send it to <%= @order.group.email_address %>.
+
+Thanks,
 Tasveer
+
+

@@ -1,8 +1,8 @@
-Hi <%= @user.name %>,
+Hello <%= @user.name %>,
 
-we miss your photos. Your last photo to <%= @group.email %> was at <%= l @photo.created_at, format: :short %>.
+It has been a while since you uploaded a photo for <%= @group.recipients.sample.name %>. Simply send your pictures to <%= @group.email_address %>.
 
-Simply send your photos to <%= @group.email_address %> (or reply to this email). Currently <%= @group.photos_missing_for_next_order %> photos are missing. 
+<%= @group.photos_missing_for_next_order %> more photos and <%= @group.recipients.map(&:name).to_sentence %> will receive the album in no time!
 
-Thanks 
+Thanks,
 Tasveer

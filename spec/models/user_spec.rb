@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
   describe 'notify_inactive_users' do
     let!(:active_user) { FactoryGirl.create(:user, last_import_at: Time.now) }
 
-    let(:group) { FactoryGirl.create(:group) }
+    let(:group) { FactoryGirl.create(:group, :with_recipients) }
     before do
       FactoryGirl.create(:photo, user: active_user, group: group)
       FactoryGirl.create(:photo, user: inactive_user, group: group)
