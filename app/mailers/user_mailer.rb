@@ -1,6 +1,12 @@
 class UserMailer < ApplicationMailer
   default from: ENV['EMAIL_SENDER_ADDRESS']
 
+  def welcome(group)
+    @group = group
+    mail(to: @group.owner_email, from: @group.email_address, subject: 'Welcome to your new album')
+  end
+
+
   def email_processed(args={})
     @name = args[:email].from[:name]
     @email = args[:email].from[:email]
@@ -23,7 +29,7 @@ class UserMailer < ApplicationMailer
   def new_order(order, user)
     @user = user
     @order = order
-    mail(to: user.email, from: order.group.email_address, subject: 'A new package is on the way')
+    mail(to: user.email, from: order.group.email_address, subject: 'A new albumi is on the way')
   end
 
   def login(email, groups)

@@ -1,0 +1,12 @@
+Hi!
+
+Thank you for establishing a new group album at Tasveer. We are now ready to receive all your photos at <%= @group.email_address %>.
+
+Remember, you can now share this unique e-mail address with all your friends and family and they can contribute their photos too in making this album truely special!
+
+Keep the group active by sending photos regularly but don't worry, if you forget, we will send you gentle reminders from time to time.
+Here is the link to manage your group: <%= group_url(@group.identifier, host: ENV['SMTP_DOMAIN']) %>
+
+Let's get started! We bet <%= @group.recipients.map(&:name).to_sentence %> can't wait to see the first album. Send your first photo to: <%= @group.email_address %>
+
+Your Tasveer team
