@@ -28,6 +28,6 @@ class UserMailer < ApplicationMailer
 
   def login(email, groups)
     @groups = groups
-    mail(to: email, subject: 'Tasveer.ew login link')
+    mail(to: email, subject: 'Tasveer.de login link')
   end
 end
