@@ -1,20 +1,23 @@
 <div id="home">
-  <%= image_tag "welcome.png" %>
-  <h1><%= t('home.headline') %></h1>
-  <h2>Collect photos together</h2>
+  <div class="center">
+    <%= image_tag "welcome.png" %>
+    <h1><%= t('home.headline') %></h1>
+    <h2>Collect photos together</h2>
 
-  <div class="call-to-action">
-    <%= link_to "Get started", new_group_url, class: "button-go pure-button" %>
+    <div class="call-to-action">
+      <%= link_to "Get started", new_group_url, class: "button-go pure-button" %>
+    </div>
+    or <%= link_to "manage your group", login_url %>
   </div>
-  or <%= link_to "manage your group", login_url %>
 
 
+  <h3>What is Tasveer?</h3>
+  <p>
+    Tasveer literally means a picture or a photo in Hindi.<br />
+    There was a time of film cameras when we had to wait impatiently for the 35th photo to be clicked so that we could finally see all the prints. In this age of digital cameras, that suspense, that magic is kinda lost...or has it?
+  </p>
+  <p>
+    We at Tasveer want to try to bring that time back. We want to create the surprise of an album at someone's door. We want you, your friends and family to share these moments and let them stay on a refrigerator, or on the bedside, and not just in some hard drive, lost and ignored. So let's make it happen!
+  </p>
 
-<h3>What is Tasveer?</h3>
-<p>
-  Tasveer literally means a picture or a photo in Hindi.<br />
-  There was a time of film cameras when we had to wait impatiently for the 35th photo to be clicked so that we could finally see all the prints. In this age of digital cameras, that suspense, that magic is kinda lost...or has it?
-</p>
-<p>
-  We at Tasveer want to try to bring that time back. We want to create the surprise of an album at someone's door. We want you, your friends and family to share these moments and let them stay on a refrigerator, or on the bedside, and not just in some hard drive, lost and ignored. So let's make it happen!
-</p>
+</div>
