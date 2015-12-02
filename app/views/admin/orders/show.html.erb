@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Created at</strong>
+  <%= l @order.created_at, format: :short %>
+</p>
+
+<p>
   <strong>Manage:</strong>
   <%= button_to 'Prepare', prepare_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
   <%= button_to 'Submit', submit_admin_order_url(@order), method: :put, data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
@@ -37,10 +42,6 @@
   </tbody>
 </table>
 
-<p>
-  <strong>Created at</strong>
-  <%= l @order.created_at, format: :short %>
-</p>
 
 
 <h1>Listing Photos</h1>
@@ -70,7 +71,6 @@
     <% end %>
   </tbody>
 </table>
-
 
 
 <%= link_to 'Edit', edit_admin_order_path(@order) %> |
