@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/login' => 'sessions#new'
 
-  match 'whatsapp', to: 'chat_sessions#whatsapp', via: :post
-  match 'telegram', to: 'chat_sessions#telegram', via: :post
+  #match 'whatsapp', to: 'chat_sessions#whatsapp', via: :post
+  #match 'telegram', to: 'chat_sessions#telegram', via: :post
 
   mount_griddler
   root 'pages#home'
