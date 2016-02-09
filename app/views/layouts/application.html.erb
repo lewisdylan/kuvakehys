@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tasveer.de - </title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>Tasveer.de</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <div id="wrapper">
-
   <div id="logo">
-    <h1><%= image_tag "logo.png", alt: "Tasveer.de" %></h1>
+    <h1>Tasveer.de</h1>
   </div>
   <% [:notice, :error, :success].each do |f| %>
     <% next unless flash[f].present? %>
