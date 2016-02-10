@@ -22,7 +22,7 @@ class EmailPhotoProcessor
       })
     end
     order = group.has_enough_photos_for_a_new_order? ? group.orders.create(user: user, photos: group.photos.open) : nil
-    user.update_attribute(:last_import_at, Time.now)
+    user.mark_as_active!
     UserMailer.email_processed(email: @email, group: group, photos: photos, order: order).deliver_now if photos.any?(&:valid?)
   end
 
