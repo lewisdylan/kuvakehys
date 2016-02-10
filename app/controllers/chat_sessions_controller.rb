@@ -10,7 +10,7 @@ class ChatSessionsController < ApplicationController
     )
     @message = @update.message
 
-    @photo = @update.message.photo.sort {|a, b| binding.pry; a["file_size"] <=> b["file_size"] }.last
+    @photo = @update.message.photo.sort {|a, b| a["file_size"] <=> b["file_size"] }.last
 
     user = User.find_or_create_by(telegram_id: @message.from.id.to_s)
     user.update_attributes(last_import_at: Time.now, name: "#{@message.from.first_name} #{@message.from.last_name}")
