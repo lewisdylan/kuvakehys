@@ -11,7 +11,6 @@ gem 'telegrammer'
 gem 'griddler-mailgun'
 gem 'pg'
 gem 'lograge'
-gem "airbrake"
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
 gem 'pwinty', git: 'https://github.com/bumi/pwinty.git'
