@@ -7,6 +7,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
+gem 'telegrammer'
 gem 'griddler-mailgun'
 gem 'pg'
 gem 'lograge'
@@ -18,7 +19,7 @@ gem 'country_select'
 gem 'kaminari'
 gem 'mad_id'
 
-gem 'rollbar', '~> 2.4.0'
+gem 'rollbar', '~> 2.7.0'
 gem 'oj', '~> 2.12.14'
 
 group :test, :development do

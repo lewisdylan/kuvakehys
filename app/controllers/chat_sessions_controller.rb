@@ -17,22 +17,22 @@ class ChatSessionsController < ApplicationController
 
     if @message.text.present?
       if @message.text == '/start'
-        reply = "Hi #{@message.from.first_name}, welcome to tasveer on telegram. To which group do you want to send pictures?"
+        reply = "Hi #{@message.from.first_name}, welcome to tasveer on telegram. To which album do you want to send pictures?"
       elsif group = Group.find_by(email: @message.text.downcase)
         user.group = group
         user.save!
-        reply = "You have been added to the group #{group.email}. You can now send your pictures to be added there."
+        reply = "You have been added to the album #{group.email}. You can now send your pictures for that group."
       else
-        reply = "Sorry group #{@message.text} does not exist. Go to http://tasveer.de if you want to create one."
+        reply = "Sorry album #{@message.text} does not exist. Go to http://tasveer.de if you want to create one."
       end
     end
     if @photo
       if !user.group.nil?
         @picture_url = TELEGRAM.get_file(file_id: @photo.file_id)
         user.group.photos.create(user: user,  picture: @picture_url, sender_name: "#{@message.from.first_name} #{@message.from.last_name}")
-        reply = "Thanks #{@message.from.first_name}, your picture was successfully added to group #{user.group.email}. #{user.group.photos_missing_for_next_order} photos are missing for the next package."
+        reply = "Thanks #{@message.from.first_name}, your picture was successfully added to album #{user.group.email}. #{user.group.photos_missing_for_next_order} photos are missing for the next package."
       else
-        reply = "Hi #{@message.from.first_name}! Sorry, we could not identify your group. Which group do you want to send the picture to?"
+        reply = "Hi #{@message.from.first_name}! Sorry, we could not identify your group. Which album do you want to send the picture to?"
       end
     end
     args = { chat_id: @message.chat.id, text: reply}
