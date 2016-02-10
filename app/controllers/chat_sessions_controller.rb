@@ -28,7 +28,7 @@ class ChatSessionsController < ApplicationController
     end
     if @photo
       if !user.group.nil?
-        @picture_url = TELEGRAM.get_file(file_id: @photo.file_id)
+        @picture_url = TELEGRAM.get_file(file_id: @photo['file_id'])
         user.group.photos.create(user: user,  picture: @picture_url, sender_name: "#{@message.from.first_name} #{@message.from.last_name}")
         reply = "Thanks #{@message.from.first_name}, your picture was successfully added to album #{user.group.email}. #{user.group.photos_missing_for_next_order} photos are missing for the next package."
       else
