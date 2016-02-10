@@ -1,19 +1,19 @@
 <div id="new-group">
   <%= form_for(@group, html: {class: 'group-form pure-form pure-form-stacked'}) do |f| %>
     <fieldset class="group-identifier">
-      <legend>Name your easy to remember photo album</legend>
+      <legend>Name your photo album</legend>
       <div class="pure-control-group">
         <div class="identifier">
           <%= f.text_field :email, required: true %>@<%= ENV['SMTP_DOMAIN'] %>
         </div>
-        All photos sent to this address will now be collected and printed.<br />
-        Share this address so that others can participate too!
+        This will also be your custom e-mail address. <br />All photos sent to this address will now be collected and printed.<br />
+        You can share this address with friends so that others can participate too!
       </div>
     </fieldset>
 
 
     <fieldset class="group-recipient">
-      <legend>To whom shall we send the photos?</legend>
+      <legend>Recipient address</legend>
 
       <%= f.fields_for :recipients do |rf| %> 
         <div class="pure-control-group">

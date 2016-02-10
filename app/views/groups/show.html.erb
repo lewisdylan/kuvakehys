@@ -1,5 +1,5 @@
 <div id="group-details">
-  E-Mail photos to this address:
+  E-mail photos to this address:
   <h1 class="group-email animated">
     <%= link_to @group.email_address, "mailto:#{@group.email_address}" %>
   </h1>
@@ -12,10 +12,11 @@
 
 
   <div class="call-to-action small">
-    <%= link_to "Invite your friends and family", "mailto:?subject=Photos for #{@group.recipient_names}&body=Hi! \n\nPlease send photos to #{@group.email_address}. We collect them and send prints to #{@group.recipient_names}.", class: "button-go pure-button" %>
   </div>
+  <%= link_to "Invite your friends and family", "mailto:?subject=Photos for #{@group.recipient_names}&body=Hi! \n\nPlease send photos to {@group.email_address}. We collect them and send prints to #{@group.recipient_names}.", class: "" %>
 
   <% if @manage %>
+    <hr />
     <div class="pure-g">
       <div class="pure-u-1-3">
 

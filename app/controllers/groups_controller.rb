@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         UserMailer.welcome(@group).deliver_now
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to @group }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
