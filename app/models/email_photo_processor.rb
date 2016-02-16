@@ -10,6 +10,13 @@ class EmailPhotoProcessor
     user = User.find_or_create_by(email: @email.from[:email])
     user.update_attribute(:name, @email.from[:name]) unless user.name?
     group = Group.where(email: to_tokens).first!
+
+    # hack to prevent duplicate emails. ToDo: use the picture_fingerprint for this.
+    if group.photos.where(message_id: @email.headers["Message-ID"]).any?
+      Rails.logger.warn("duplicate email: #{@email.headers["Message-ID"]}")
+      return true
+    end
+
     photos = @email.attachments.collect do |a|
       group.photos.create({
         user: user,
