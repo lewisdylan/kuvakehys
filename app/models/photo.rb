@@ -8,10 +8,6 @@ class Photo < ActiveRecord::Base
   scope :ordered, -> { where('order_id IS NOT NULL') }
   scope :latest, -> { order('created_at DESC') }
 
-  # we want to make sure photos are unique per group and order
-  validates_uniqueness_of :picture_fingerprint, scope: [:group_id, :order_id], allow_blank: true
-  before_save :analyze_picture
-
   if Rails.env.production?
     has_attached_file :picture, styles: { small: '200', big: '600' },
       :path => ":class/:attachment/:id/:style/:hash.:extension",
@@ -20,9 +16,13 @@ class Photo < ActiveRecord::Base
     has_attached_file :picture, styles: { small: '200', big: '600' }
   end
 
+  # we want to make sure photos are unique per group and order
+  validates_uniqueness_of :picture_fingerprint, scope: [:group_id, :order_id], allow_blank: true
+  validate :prevent_duplicate_picture #ToDo: this should actually already be prevented by the validates_uniqueness_of picture_fingerprint. but there might be bugs
   validates_attachment :picture, presence: true,
       content_type: { content_type: "image/jpeg" }
 
+  before_save :analyze_picture
 
   def to_order
     {
@@ -53,5 +53,10 @@ class Photo < ActiveRecord::Base
       self.width = geometry.width.to_i
       self.height = geometry.height.to_i
     end
+  end
+
+  def prevent_duplicate_picture
+    fingerprint = picture.queued_for_write[:original].fingerprint
+    errors.add(:picture, 'duplicate') if fingerprint && self.group.photos.open.where(picture_fingerprint: fingerprint).any?
   end
 end
