@@ -56,7 +56,8 @@ class Photo < ActiveRecord::Base
   end
 
   def prevent_duplicate_picture
-    fingerprint = picture.queued_for_write[:original].fingerprint
+    return if picture.blank? || group.blank?
+    fingerprint = picture.queued_for_write[:original].try(:fingerprint)
     if fingerprint && self.group.photos.open.where(picture_fingerprint: fingerprint).any?
       Rails.logger.warn("duplicate picture detected: #{fingerprint}")
       errors.add(:picture, 'duplicate')

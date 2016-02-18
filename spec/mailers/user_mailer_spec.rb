@@ -21,7 +21,7 @@ RSpec.describe UserMailer, type: :mailer do
 
       it 'warns about bad quality' do
         mailer = UserMailer.email_processed(email: email, group: group, photos: photos)
-        expect(mailer.body.to_s).to match(/Fotos sollten eine möglichst hoche Auflösung haben/)
+        expect(mailer.body.to_s).to match(/Fotos sollten eine möglichst hohe Auflösung haben/)
       end
     end
 

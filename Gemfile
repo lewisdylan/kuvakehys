@@ -21,6 +21,8 @@ gem 'mad_id'
 gem 'rollbar', '~> 2.7.0'
 gem 'oj', '~> 2.12.14'
 
+gem 'web-console', '~> 2.0', group: :development
+
 group :test, :development do
   gem "rspec-rails"
   gem "factory_girl_rails"
@@ -29,7 +31,6 @@ group :test, :development do
   gem 'dotenv-rails'
   gem 'quiet_assets'
   gem 'spring'
-  gem 'web-console', '~> 2.0'
   # gem 'therubyracer' - if you have problems withs node.js / asset compilation
   # gem 'sqlite3' - if you want to use sqlite3 for development
 end
