@@ -2,8 +2,10 @@ language: ruby
 bundler_args: --without development production
 cache: bundler
 before_script:
+  - "cp -v config/database.yml.example config/database.yml"
   - "bundle exec rake db:create"
   - "bundle exec rake db:migrate"
+script: bundle exec rake
 rvm:
   - 2.3.0
   - 2.2.4
