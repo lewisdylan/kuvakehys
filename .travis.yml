@@ -1,0 +1,9 @@
+language: ruby
+bundler_args: --without development production
+cache: bundler
+before_script:
+  - "bundle exec rake db:create"
+  - "bundle exec rake db:migrate"
+rvm:
+  - 2.3.0
+  - 2.2.4
