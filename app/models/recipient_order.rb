@@ -42,7 +42,7 @@ class RecipientOrder < ActiveRecord::Base
 
   def add_photos
     return false unless self.status == 'order_created'
-    PWINTY.add_photos(self.print_order_id, self.order.photos.map {|m| m.to_order(self.recipient.country) })
+    PWINTY.add_photos(self.print_order_id, self.order.photos.map {|m| m.to_order(country: self.recipient.country) })
     self.update_attribute(:status, 'photos_added')
   end
 
