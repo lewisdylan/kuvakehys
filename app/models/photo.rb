@@ -24,17 +24,18 @@ class Photo < ActiveRecord::Base
 
   before_save :analyze_picture
 
-  def to_order
+  def to_order(args)
     {
-      type: self.print_type,
+      type: self.print_type(args),
       url: self.picture.url,
       copies: 1,
       sizing: 'Crop' # or 'ShrinkToFit' see http://www.pwinty.com/ApiDocs/Resizing
     }
   end
 
-  def print_type
-    if self.group && ['GB', 'US', 'BR', 'AU', 'CA', 'CL', 'MX'].include?(self.group.printing_country)
+  # {country: 'GB'}
+  def print_type(args)
+    if ['GB', 'US', 'BR', 'AU', 'CA', 'CL', 'MX'].include?(args[:country])
       '4x6'
     else
       (self.width.to_i > 600 && self.height.to_i > 900) ? '10x15_cm' : '9x13_cm'

@@ -31,21 +31,6 @@ class Group < ActiveRecord::Base
     self.photo_limit - self.photos.open.count
   end
 
-  # international shipping means that we are shipping to a country that has no printing facility.
-  # thus also the printing company must be GB see #printing_country
-  def international_shipping?
-    # this is a manually picked list from the pwinty countries endpoint. these countries "haveProducts" meaning they have local printing facilities
-    !['AT', 'AU', 'BE', 'BR', 'CA', 'CH', 'CL', 'DE', 'DK', 'ES', 'FR', 'GB', 'IE', 'IT', 'MX', 'NL', 'NO', 'RO', 'SE', 'US'].include?(self.recipient_country)
-  end
-
-  def printing_country
-    # see #international_shipping?
-    if !international_shipping?
-      self.recipient_country
-    else
-      'GB' #international shipping from GB
-    end
-  end
 
   def insert_defaults
     self.email ||= Haikunator.haikunate
