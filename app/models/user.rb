@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	belongs_to :group
 	has_many :photos, dependent: :nullify
 
-  scope :inactive, -> { where(['last_import_at IS NOT NULL and last_import_at < ?', 2.weeks.ago]) }
+  scope :inactive, -> { where(['last_import_at IS NOT NULL and last_import_at < ?', 3.weeks.ago]) }
   scope :with_email, -> { where('email IS NOT NULL') }
 
   def mark_as_active!
