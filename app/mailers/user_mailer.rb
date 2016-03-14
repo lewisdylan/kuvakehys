@@ -29,7 +29,7 @@ class UserMailer < ApplicationMailer
   def new_order(order, user)
     @user = user
     @order = order
-    mail(to: user.email, from: order.group.email_address, subject: 'A new albumi is on the way')
+    mail(to: user.email, from: order.group.email_address, subject: 'A new album is on the way')
   end
 
   def login(email, groups)
