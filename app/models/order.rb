@@ -42,7 +42,7 @@ class Order < ActiveRecord::Base
   end
 
   def notify_users
-    self.users.where.not(id: self.user.try(:id)).uniq.each do |u|
+    self.users.where.not(id: self.user.try(:id)).distinct.each do |u|
       UserMailer.new_order(self, u).deliver_now
     end
   end

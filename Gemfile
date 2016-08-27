@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.4'
+gem 'rails', '5.0.0.1'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'uglifier', '>= 3.0.2'
+gem 'coffee-rails', '~> 4.2.1'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
 
 gem 'telegrammer'
 gem 'griddler-mailgun'
@@ -18,8 +17,8 @@ gem 'country_select'
 gem 'kaminari'
 gem 'mad_id'
 
-gem 'rollbar', '~> 2.7.0'
-gem 'oj', '~> 2.12.14'
+gem 'rollbar', '~> 2.12.0'
+gem 'oj', '~> 2.17.3'
 
 gem 'web-console', '~> 2.0', group: :development
 
@@ -29,7 +28,6 @@ group :test, :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'dotenv-rails'
-  gem 'quiet_assets'
   gem 'spring'
   # gem 'therubyracer' - if you have problems withs node.js / asset compilation
   # gem 'sqlite3' - if you want to use sqlite3 for development
@@ -43,4 +41,3 @@ group :production do
   gem 'passenger', '>= 5.0.0'
 end
 
-gem 'sdoc', '~> 0.4.0', group: :doc
