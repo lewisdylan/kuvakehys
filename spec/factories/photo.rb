@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :photo do
     sender_name "Maeve"
     sender_email "maeve@nairobi.com"

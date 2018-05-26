@@ -24,6 +24,11 @@ require 'rspec/rails'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+
+ENV['EMAIL_SENDER_ADDRESS'] ||= 'kuvakehys@example.com'
+ENV['ADMIN_EMAIL'] ||= 'admin@example.com'
+ENV['SMTP_DOMAIN'] ||= 'example.com'
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

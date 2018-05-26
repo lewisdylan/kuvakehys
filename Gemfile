@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.4.1'
 
-gem 'rails', '5.0.0.1'
+gem 'rails', '~>5.2.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 3.0.2'
 gem 'coffee-rails', '~> 4.2.1'
@@ -20,13 +20,15 @@ gem 'kaminari'
 gem 'mad_id'
 
 gem 'rollbar', '~> 2.12.0'
-gem 'oj', '~> 2.17.3'
+gem 'oj', '~> 3.6.0'
 
-gem 'web-console', '~> 2.0', group: :development
+
+gem 'bootsnap', require: false
 
 group :test, :development do
+  gem 'listen'
   gem "rspec-rails"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem 'pry'
   gem 'pry-rails'
   gem 'dotenv-rails'

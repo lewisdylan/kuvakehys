@@ -1,4 +1,4 @@
-class CreateRecipients < ActiveRecord::Migration
+class CreateRecipients < ActiveRecord::Migration[5.0]
   def up
     create_table :recipients do |t|
       t.integer :group_id

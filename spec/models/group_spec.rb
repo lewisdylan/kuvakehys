@@ -3,13 +3,13 @@ require 'rails_helper'
 describe Group do
 
   it 'saves email as downcased string' do
-    group = FactoryGirl.create(:group, email: 'JunCtion')
+    group = FactoryBot.create(:group, email: 'JunCtion')
     expect(group.email).to eql('junction')
   end
 
   describe 'ordering open photos' do
-    let!(:group) { FactoryGirl.create(:group, email: 'butare') }
-    let!(:photo) { FactoryGirl.create(:photo, group: group) }
+    let!(:group) { FactoryBot.create(:group, email: 'butare') }
+    let!(:photo) { FactoryBot.create(:photo, group: group) }
 
     context 'full order' do
       before { group.photo_limit = 1 }

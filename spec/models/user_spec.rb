@@ -3,16 +3,16 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   describe 'notify_inactive_users' do
-    let!(:active_user) { FactoryGirl.create(:user, last_import_at: Time.now) }
+    let!(:active_user) { FactoryBot.create(:user, last_import_at: Time.now) }
 
-    let(:group) { FactoryGirl.create(:group, :with_recipients) }
+    let(:group) { FactoryBot.create(:group, :with_recipients) }
     before do
-      FactoryGirl.create(:photo, user: active_user, group: group)
-      FactoryGirl.create(:photo, user: inactive_user, group: group)
+      FactoryBot.create(:photo, user: active_user, group: group)
+      FactoryBot.create(:photo, user: inactive_user, group: group)
     end
 
     context 'notification not sent' do
-      let!(:inactive_user) { FactoryGirl.create(:user, last_import_at: 3.weeks.ago) }
+      let!(:inactive_user) { FactoryBot.create(:user, last_import_at: 3.weeks.ago) }
       it 'does send a mail to the user' do
         expect(UserMailer).to receive(:inactivity_notification).once.with(inactive_user).and_return(double(deliver_now: true))
         User.notify_inactive_users
@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
       end
     end
     context 'notification already sent' do
-      let!(:inactive_user) { FactoryGirl.create(:user, last_import_at: 3.weeks.ago, last_inactivity_notifier_at: 1.week.ago) }
+      let!(:inactive_user) { FactoryBot.create(:user, last_import_at: 3.weeks.ago, last_inactivity_notifier_at: 1.week.ago) }
 
       it 'does not send a mail to the user' do
         User.notify_inactive_users

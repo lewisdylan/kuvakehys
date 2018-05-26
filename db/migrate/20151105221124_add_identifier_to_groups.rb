@@ -1,4 +1,4 @@
-class AddIdentifierToGroups < ActiveRecord::Migration
+class AddIdentifierToGroups < ActiveRecord::Migration[5.0]
   def change
     add_column :groups, :identifier, :string
     Group.readonly_attributes.delete('identifier')

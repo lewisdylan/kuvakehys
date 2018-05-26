@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence :group_email do |n|
     "group-#{n}"
   end

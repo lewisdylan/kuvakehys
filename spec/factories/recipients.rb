@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :recipient do
     name "name"
     address_1 "address1"

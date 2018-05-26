@@ -3,8 +3,8 @@ require 'rails_helper'
 describe EmailPhotoProcessor do
 
   let(:to) {  [{ raw: "#{group.email}@email.com", email: "#{group.email}@email.com", token: group.email, host: 'email.com' }] }
-  let(:group) { FactoryGirl.create(:group) }
-  let(:email) { FactoryGirl.build(:email, :with_attachment, to: to) }
+  let(:group) { FactoryBot.create(:group) }
+  let(:email) { FactoryBot.build(:email, :with_attachment, to: to) }
   let(:processor) { EmailPhotoProcessor.new(email) }
 
   describe 'users' do
@@ -19,7 +19,7 @@ describe EmailPhotoProcessor do
     end
 
     context 'existing user' do
-      let!(:user) { FactoryGirl.create(:user, email: email.from[:email], name: email.from[:name] ) }
+      let!(:user) { FactoryBot.create(:user, email: email.from[:email], name: email.from[:name] ) }
 
       it 'finds the user by email' do
         expect { processor.process }.not_to change {User.count}
@@ -37,8 +37,8 @@ describe EmailPhotoProcessor do
 
   context 'duplicates' do
     let(:to) {  [{ raw: "#{group.email}@email.com", email: "#{group.email}@email.com", token: group.email, host: 'email.com' }] }
-    let(:group) { FactoryGirl.create(:group) }
-    let(:email) { FactoryGirl.build(:email, :with_attachment, to: to) }
+    let(:group) { FactoryBot.create(:group) }
+    let(:email) { FactoryBot.build(:email, :with_attachment, to: to) }
     let(:processor) { EmailPhotoProcessor.new(email) }
 
     it 'ignores duplicates' do
@@ -50,13 +50,13 @@ describe EmailPhotoProcessor do
   end
 
   describe 'order' do
-    let(:group) { FactoryGirl.create(:group, photo_limit: 2) }
+    let(:group) { FactoryBot.create(:group, photo_limit: 2) }
     let(:to) {  [{ raw: "#{group.email}@email.com", email: "#{group.email}@email.com", token: group.email, host: 'email.com' }] }
-    let(:email) { FactoryGirl.build(:email, :with_attachment, to: to) }
+    let(:email) { FactoryBot.build(:email, :with_attachment, to: to) }
     context 'full' do
       # we already have a photo
       before do
-        FactoryGirl.create(:photo, group: group)
+        FactoryBot.create(:photo, group: group)
       end
 
       it 'create a new order' do
@@ -66,8 +66,8 @@ describe EmailPhotoProcessor do
       end
 
       it 'does not change photos from old orders' do
-        old_order = FactoryGirl.create(:order)
-        old_photo = FactoryGirl.create(:photo, order: old_order, group: group)
+        old_order = FactoryBot.create(:order)
+        old_photo = FactoryBot.create(:photo, order: old_order, group: group)
         EmailPhotoProcessor.new(email).process
         expect(old_photo.reload.order).to eql(old_order)
       end

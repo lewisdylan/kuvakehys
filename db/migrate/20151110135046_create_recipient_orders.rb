@@ -1,4 +1,4 @@
-class CreateRecipientOrders < ActiveRecord::Migration
+class CreateRecipientOrders < ActiveRecord::Migration[5.0]
   def up
     create_table :recipient_orders do |t|
       t.integer :order_id

@@ -5,8 +5,8 @@ RSpec.describe UserMailer, type: :mailer do
   # TODO: i18n
 
   describe "email_processed" do
-    let(:email) { FactoryGirl.build(:email) }
-    let(:group) { FactoryGirl.build(:group) }
+    let(:email) { FactoryBot.build(:email) }
+    let(:group) { FactoryBot.build(:group) }
 
     it 'sends an email saying thanks' do
       mailer = UserMailer.email_processed(email: email, group: group, photos: [])
@@ -17,7 +17,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     context "bad picture quality" do
-      let(:photos) { [ FactoryGirl.build(:photo, width: 100, height: 100) ] }
+      let(:photos) { [ FactoryBot.build(:photo, width: 100, height: 100) ] }
 
       it 'warns about bad quality' do
         mailer = UserMailer.email_processed(email: email, group: group, photos: photos)
@@ -26,7 +26,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     context "new order" do
-      let(:order) { FactoryGirl.build(:order) }
+      let(:order) { FactoryBot.build(:order) }
       it 'tells about the new order' do
         mailer = UserMailer.email_processed(email: email, group: group, photos: [], order: order)
         expect(mailer.body.to_s).to match(/deinen Fotos wurde das Album voll und die Fotos sind nun auf dem Weg/)
@@ -36,9 +36,9 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "inactivity notification" do
-    let!(:user) { FactoryGirl.create(:user) }
-    let!(:group) { FactoryGirl.create(:group, :with_recipients) }
-    let!(:photo) { FactoryGirl.create(:photo, user: user, group: group) }
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:group) { FactoryBot.create(:group, :with_recipients) }
+    let!(:photo) { FactoryBot.create(:photo, user: user, group: group) }
 
     it 'tells the user to send more emails' do
       mailer = UserMailer.inactivity_notification(user)
@@ -49,7 +49,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "welcome" do
-    let!(:group) { FactoryGirl.create(:group, :with_recipients, email: 'hehe', owner_email: 'bumi@hehe.rw') }
+    let!(:group) { FactoryBot.create(:group, :with_recipients, email: 'hehe', owner_email: 'bumi@hehe.rw') }
 
     it 'sends a welcome notification to the owner' do
       mailer = UserMailer.welcome(group)
