@@ -1,0 +1,6 @@
+
+Collection: <%= @invitation.collection.identifier %>
+Invitation: <%= @invitation.identifier %>
+Accepted: <%= @invitation.accepted_at %>
+
+<%= link_to "accept", "tasveer://invite/details?invitation_id=#{@invitation.identifier}&collection_id=#{@invitation.collection.identifier}&token=#{@invitation.identifier}" %>

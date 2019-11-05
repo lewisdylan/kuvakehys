@@ -4,8 +4,6 @@ FactoryBot.define do
   end
   factory :user do
     email { generate(:user_email) }
-    group_id 1
-    name 'Butare Rwanda'
+    name { 'Butare Rwanda' }
   end
-
 end

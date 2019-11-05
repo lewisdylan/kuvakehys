@@ -1,31 +1,24 @@
 source 'https://rubygems.org'
 
-ruby '2.4.1'
+gem 'rails', '~>6.0.0'
+gem 'uglifier'
 
-gem 'rails', '~>5.2.0'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 3.0.2'
-gem 'coffee-rails', '~> 4.2.1'
-gem 'jquery-rails'
-
-gem 'telegrammer'
-gem 'griddler-mailgun'
+gem "puma"
 gem 'pg'
 gem 'lograge'
-gem 'paperclip'
-gem 'aws-sdk', '>= 2.0.34'
-gem 'pwinty', git: 'https://github.com/bumi/pwinty.git'
-gem 'country_select'
-gem 'kaminari'
 gem 'mad_id'
 
-gem 'rollbar', '~> 2.12.0'
-gem 'oj', '~> 3.6.0'
-
-
-gem 'bootsnap', require: false
+gem 'oj'
+gem 'gutentag'
+gem "aws-sdk-s3", require: false
+gem "aws-sdk-rekognition"
+gem 'mini_magick'
+gem 'pagy'
+gem 'ougai'
+gem 'kitely'
 
 group :test, :development do
+  gem 'awesome_print'
   gem 'listen'
   gem "rspec-rails"
   gem "factory_bot_rails"
@@ -42,6 +35,5 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'passenger', '>= 5.0.0'
 end
 

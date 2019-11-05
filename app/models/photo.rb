@@ -1,67 +1,52 @@
 class Photo < ActiveRecord::Base
+  attr_accessor :add_to # used to associate collections by identifier
 
-  belongs_to :group
-  belongs_to :order
   belongs_to :user
 
-  scope :open, -> { where('order_id IS NULL') }
-  scope :ordered, -> { where('order_id IS NOT NULL') }
+  has_many :collectionships, dependent: :destroy
+  has_many :collections, through: :collectionships
+
   scope :latest, -> { order('created_at DESC') }
 
-  if Rails.env.production?
-    has_attached_file :picture, styles: { small: '200', big: '600' },
-      :path => ":class/:attachment/:id/:style/:hash.:extension",
-      :hash_secret => ENV['PAPERCLIP_URL_SECRET']
-  else
-    has_attached_file :picture, styles: { small: '200', big: '600' }
-  end
+  has_one_attached :file
+
+  after_create :add_to_collections
+
+  identify_with :pht
+
+  Gutentag::ActiveRecord.call self
 
   # we want to make sure photos are unique per group and order
-  validates_uniqueness_of :picture_fingerprint, scope: [:group_id, :order_id], allow_blank: true
-  validate :prevent_duplicate_picture #ToDo: this should actually already be prevented by the validates_uniqueness_of picture_fingerprint. but there might be bugs
-  validates_attachment :picture, presence: true,
-      content_type: { content_type: "image/jpeg" }
+  # validates_uniqueness_of :picture_fingerprint, scope: [:collection_id], allow_blank: true
 
-  before_save :analyze_picture
-
-  def to_order(args)
-    {
-      type: self.print_type(args),
-      url: self.picture.url,
-      copies: 1,
-      sizing: 'Crop' # or 'ShrinkToFit' see http://www.pwinty.com/ApiDocs/Resizing
-    }
+  def as_json(args={})
+    h = super(args.merge({
+      only: [:identifier, :caption, :picture_fingerprint, :picture_content_type],
+      methods: [:tag_names, :width, :height]
+    }))
+    h.merge({
+      file_url: Rails.application.routes.url_helpers.rails_blob_url(self.file, host: ENV['DEFAULT_HOST'], protocol: 'https'),
+      file_url: self.file.service_url,
+      file_preview: (self.file.variant(resize: '1024x').processed.service_url rescue nil),
+      user_id: self.user.identifier,
+      collection_ids: self.collections.map(&:identifier)
+    })
   end
 
-  # {country: 'GB'}
-  def print_type(args)
-    if ['GB', 'US', 'BR', 'AU', 'CA', 'CL', 'MX'].include?(args[:country])
-      '4x6'
-    else
-      (self.width.to_i > 600 && self.height.to_i > 900) ? '10x15_cm' : '9x13_cm'
-    end
+  def add_to_collections
+    self.collections << Array.wrap(self.add_to).map {|i| self.user.collections.find_by_mad_id(i) }.compact
+  end
+
+  def width
+    self.file.metadata[:width]
+  end
+
+  def height
+    self.file.metadata[:height]
   end
 
   def has_bad_quality?
     self.width.to_i < 800 || self.height.to_i < 800
   end
 
-  def analyze_picture
-    return if picture.blank?
-    tempfile = picture.queued_for_write[:original]
-    unless tempfile.nil?
-      geometry = Paperclip::Geometry.from_file(tempfile)
-      self.width = geometry.width.to_i
-      self.height = geometry.height.to_i
-    end
-  end
-
-  def prevent_duplicate_picture
-    return if picture.blank? || group.blank?
-    fingerprint = picture.queued_for_write[:original].try(:fingerprint)
-    if fingerprint && self.group.photos.open.where(picture_fingerprint: fingerprint).any?
-      Rails.logger.warn("duplicate picture detected: #{fingerprint}")
-      errors.add(:picture, 'duplicate')
-    end
-  end
 end

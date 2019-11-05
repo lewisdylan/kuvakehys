@@ -10,10 +10,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require 'pure-min'
  *= require_tree .
  *= require_self
  */
 
+body {
+  background-color: #000;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+}
 
 

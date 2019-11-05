@@ -1,0 +1,8 @@
+Hello,
+
+<%= @invitation.message %>
+
+<%= @invitation.identifier %>
+<%= @invitation.collection.identifier %>
+
+<%= link_to "show", invitation_url(@invitation, collection_id: @invitation.collection.identifier, host: 'kuvakehys-tasveer.herokuapp.com') %>

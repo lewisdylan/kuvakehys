@@ -1,33 +1,3 @@
 Rails.application.routes.draw do
-  resources :groups do
-    resources :recipients, only: [:new, :create, :destroy]
-    resources :photos
-    member do
-      get :preview
-    end
-  end
-
-  namespace :admin do
-    resources :orders, only: [:index, :show, :edit, :update, :destroy] do
-      member do
-        put :submit
-        put :prepare
-      end
-    end
-    resources :photos
-    resources :groups do
-      resources :orders, only: [:create]
-    end
-    resources :users, only: [:index, :show]
-    root 'groups#index'
-  end
-
-  post '/login' => 'sessions#create'
-  get '/login' => 'sessions#new'
-
-  #match 'whatsapp', to: 'chat_sessions#whatsapp', via: :post
-  match 'telegram', to: 'chat_sessions#telegram', via: :post
-
-  mount_griddler
-  root 'pages#home'
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
