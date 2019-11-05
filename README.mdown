@@ -7,11 +7,9 @@ Kuvakehys is the application that runs [tasveer.de](http://tasveer.de). It allow
 ### Dependencies:
 
 * Postgres >= 9.1 (SQLite3 works fine for development. adjust the Gemfile if you need it)
-* Ruby >= 1.9.3 (2.1 preferred)
+* Ruby >= 2.6
 * all ruby dependencies are described in the Gemfile (please refere to the changelog of this file to check for updates)
-* node.js or a similar JavaScript runtime for asset compilation - if you do not have node.js or a similar JS runtime, add `gem 'therubyracer', platforms: :ruby` to the Gemfile
-* mailgun.com for incoming emails (should be easy to change to another provider that forwards emails to http)
-* ongair.im for whatsapp integration
+
 
 ### Installation
 
@@ -35,21 +33,5 @@ Kuvakehys is the application that runs [tasveer.de](http://tasveer.de). It allow
     rails server
     open [http://localhost:3000](http://localhost:3000)
 
-### Production setup
-
-0) make sure all environment variables are set
-
-1) e-mail integration
-
-for incoming emails we are using [mailgun](mailgun.com). Configure a catch all route to `/email_processor`
-The gem `griddler` is used for parsing the webhook.
-
-
-## Photo printing
-
-Currenty we use [pwinty](http://pwinty.com) to print the photos. So far this was the only easily available service with a decent API. 
-The have printing facilities in many countries and ship internationally (which is suuuper expensive, meaning too expensive).
-
-The service might change in the future. Also we are looking for a more individualized product.
 
 
