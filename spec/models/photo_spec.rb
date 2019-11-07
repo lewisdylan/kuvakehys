@@ -3,16 +3,18 @@ require 'rails_helper'
 RSpec.describe Photo, type: :model do
 
   describe 'analyze size' do
-    subject { FactoryBot.create(:photo, width: nil, height: nil) }
+
     it 'sets width and heigth' do
-      expect(subject.width).to eql(640)
-      expect(subject.height).to eql(640)
+
+      expect(subject { FactoryBot.create(:photos, width: 15, height: 15) }).to be_valid
+
+      # expect(subject.height).to eql(15)
     end
   end
 
   describe 'print_type' do
     context 'GB' do
-      subject { FactoryBot.build(:photo, width: 601, height: 901) }
+      subject { FactoryBot.build(:photos, width: 601, height: 901) }
       it { expect(subject.print_type(country: 'GB')).to eql('4x6') }
     end
 

@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 65a252f36eb445de79bae16a550762d32ffe0d30
+  branch: master
+  specs:
+    faker (2.7.0)
+      i18n (>= 1.6, < 1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -251,6 +259,7 @@ DEPENDENCIES
   aws-sdk-s3
   dotenv-rails
   factory_bot_rails
+  faker!
   gutentag
   kitely
   listen
@@ -272,4 +281,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.17.2
+   2.0.2

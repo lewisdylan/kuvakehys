@@ -16,6 +16,7 @@ gem 'mini_magick'
 gem 'pagy'
 gem 'ougai'
 gem 'kitely'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 group :test, :development do
   gem 'awesome_print'
