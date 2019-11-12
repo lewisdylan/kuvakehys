@@ -15,23 +15,38 @@ Kuvakehys is the application that runs [tasveer.de](http://tasveer.de). It allow
 
 1) Install the bundle
 
+    ```bash
     bundle install
-
+    ```
 2) Setup your database
-
-    cp config/database.yml.example config/database.yml
-    vim config/database.yml # edit your database configuration
-    rake db:setup # create, migrate and seed the database
+     ```bash
+    cp config/database.yml.example
+    ```
+    ```bash
+    config/database.yml
+    ```
+    edit your database configuration
+    ```bash
+    vim config/database.yml 
+     ```
+   create, migrate and seed the database
+    ```bash
+    rake db:setup 
+    ```
 
 3) Setup application config using [dotenv](https://github.com/bkeepers/dotenv)
-    
+    ```bash
     cp env.example .env
-    vim .env # edit the needed variables
+    ```
+   edit the needed variables
+    ```bash
+    vim .env
+    ```
 
 4) Run the server / done
-
+    ```bash
     rails server
+    ```
+    ```bash
     open [http://localhost:3000](http://localhost:3000)
-
-
-
+    ```
