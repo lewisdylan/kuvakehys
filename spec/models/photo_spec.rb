@@ -4,11 +4,11 @@ RSpec.describe Photo, type: :model do
 
   describe 'analyze size' do
 
-    it 'sets width and heigth' do
+    it 'sets width and height' do
 
       expect(subject { FactoryBot.create(:photos, width: 15, height: 15) }).to be_valid
 
-      # expect(subject.height).to eql(15)
+      expect(subject.height).to eq(15)
     end
   end
 

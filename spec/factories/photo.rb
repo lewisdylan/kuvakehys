@@ -5,6 +5,7 @@ FactoryBot.define do
     caption { Faker::String.random }
     width { Faker::Number.number(digits: 2) }
     height { Faker::Number.number(digits: 2) }
+    file {Faker.file}
   end
 
 end

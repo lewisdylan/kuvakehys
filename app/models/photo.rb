@@ -26,7 +26,7 @@ class Photo < ActiveRecord::Base
     }))
     h.merge({
       file_url: Rails.application.routes.url_helpers.rails_blob_url(self.file, host: ENV['DEFAULT_HOST'], protocol: 'https'),
-      file_url: self.file.service_url,
+      # file_url: self.file.service_url,
       file_preview: (self.file.variant(resize: '1024x').processed.service_url rescue nil),
       user_id: self.user.identifier,
       collection_ids: self.collections.map(&:identifier)
