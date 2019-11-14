@@ -4,7 +4,7 @@ RSpec.describe Photo, type: :model do
 
   describe 'analyze size' do
     subject { FactoryBot.create(:photo, width: nil, height: nil) }
-    it 'sets width and heigth' do
+    it 'sets width and height' do
       expect(subject.width).to eql(640)
       expect(subject.height).to eql(640)
     end
