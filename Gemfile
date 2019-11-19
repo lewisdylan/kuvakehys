@@ -16,7 +16,7 @@ gem 'mini_magick'
 gem 'pagy'
 gem 'ougai'
 gem 'kitely'
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
 
 group :test, :development do
   gem 'awesome_print'
@@ -27,6 +27,8 @@ group :test, :development do
   gem 'pry-rails'
   gem 'dotenv-rails'
   gem 'spring'
+  gem 'faker', '~> 2.7'
+  # gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   # gem 'therubyracer' - if you have problems withs node.js / asset compilation
   # gem 'sqlite3' - if you want to use sqlite3 for development
 end
